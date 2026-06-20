@@ -349,6 +349,19 @@ html[data-current-lang="vi"] .lang-vi-label { color: var(--color-gold); }
   transform: translateY(-3px);
 }
 
+/* plaques that link to a live product get a subtle interactive affordance */
+a.plaque-linked {
+  display: block;
+  cursor: pointer;
+}
+a.plaque-linked:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 12px 30px -16px rgba(212, 175, 106, 0.35);
+}
+a.plaque-linked:hover .product-tag {
+  background: var(--color-gold-bright, var(--color-gold));
+}
+
 .plaque-emblem {
   width: 48px;
   height: 48px;
