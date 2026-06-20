@@ -1,0 +1,103 @@
+/* ============================================
+   Notes from the Bench — post + index styling
+   Extends the main Guild Atelier design tokens
+   ============================================ */
+
+.notes-index {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-3);
+}
+
+.notes-index .section-head h1 {
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  margin: var(--space-1) 0;
+}
+
+.note-date {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--color-sage-dim);
+  margin-top: 0.2rem;
+}
+
+/* ============================================
+   Single post page
+   ============================================ */
+.note-post {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-3) var(--space-5);
+}
+
+.note-post-head {
+  text-align: center;
+  margin-bottom: var(--space-4);
+}
+
+.note-post-head h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin: var(--space-2) 0 var(--space-1);
+}
+
+.note-meta {
+  font-size: 0.8rem;
+  color: var(--color-sage-dim);
+}
+
+.note-post-body {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--color-sage);
+}
+
+.note-post-body p {
+  margin-bottom: var(--space-2);
+}
+
+.note-post-body ul {
+  margin: 0 0 var(--space-2) 1.4rem;
+}
+.note-post-body li {
+  margin-bottom: 0.5rem;
+}
+
+.note-post-body strong {
+  color: var(--color-champagne);
+}
+
+.note-post-body a {
+  color: var(--color-gold);
+  text-decoration: underline;
+  text-decoration-color: rgba(212, 175, 106, 0.4);
+}
+.note-post-body a:hover {
+  text-decoration-color: var(--color-gold);
+}
+
+.note-post-footer {
+  margin-top: var(--space-5);
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(212, 175, 106, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.back-link {
+  font-size: 0.85rem;
+  color: var(--color-sage);
+  transition: color 0.25s ease;
+}
+.back-link:hover {
+  color: var(--color-gold);
+}
+
+@media (max-width: 480px) {
+  .note-post-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
