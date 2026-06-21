@@ -22,13 +22,22 @@
 .hero-actions {
   display: flex;
   justify-content: center;
+  align-items: stretch;
   gap: var(--space-2);
   margin-top: var(--space-4);
   flex-wrap: wrap;
 }
 
+.hero-actions .btn-primary,
+.hero-actions .btn-outline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  text-align: center;
+}
+
 .btn-outline {
-  display: inline-block;
   padding: 0.85em 2.2em;
   border: 1px solid var(--color-sage-dim);
   color: var(--color-sage);
