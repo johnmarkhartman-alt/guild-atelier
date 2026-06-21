@@ -1,0 +1,333 @@
+/* ============================================
+   Professional Communication — page-specific styles
+   Extends the main Guild Atelier design tokens
+   ============================================ */
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-top: 0.4rem;
+}
+
+.hero-lede {
+  font-size: 1.05rem;
+  color: var(--color-sage);
+  max-width: 540px;
+  margin: var(--space-2) auto 0;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 0.85em 2.2em;
+  border: 1px solid var(--color-sage-dim);
+  color: var(--color-sage);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+.btn-outline:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+/* ============================================
+   Intro / Philosophy
+   ============================================ */
+.intro {
+  background: var(--color-bg-section);
+  padding: var(--space-6) var(--space-3);
+  border-top: 1px solid rgba(212, 175, 106, 0.12);
+}
+
+.intro-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.intro-lead {
+  font-size: 1.15rem;
+  color: var(--color-champagne);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+}
+
+.friction-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-bottom: var(--space-4);
+}
+
+.friction-grid span {
+  font-size: 0.85rem;
+  color: var(--color-sage);
+  border: 1px solid rgba(212, 175, 106, 0.25);
+  padding: 0.5em 1.1em;
+  border-radius: var(--radius-pill, 999px);
+}
+
+.intro-philosophy {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+/* ============================================
+   Who We Work With
+   ============================================ */
+.who-we-work-with {
+  padding: var(--space-6) var(--space-3);
+}
+
+.audience-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+.audience-card {
+  background: var(--color-bg-raised);
+  border: 1px solid rgba(212, 175, 106, 0.15);
+  padding: var(--space-3);
+}
+
+.audience-card h4 {
+  font-family: var(--font-display);
+  color: var(--color-champagne);
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+  padding-bottom: var(--space-1);
+  border-bottom: 1px solid rgba(212, 175, 106, 0.2);
+}
+
+.audience-card ul {
+  list-style: none;
+}
+.audience-card li {
+  font-size: 0.85rem;
+  color: var(--color-sage);
+  padding: 0.25em 0;
+}
+
+/* ============================================
+   What We Practice
+   ============================================ */
+.practice {
+  background: var(--color-bg-section);
+  padding: var(--space-6) var(--space-3);
+  border-top: 1px solid rgba(212, 175, 106, 0.12);
+}
+
+.practice-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2) var(--space-4);
+}
+
+.practice-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.98rem;
+  color: var(--color-champagne);
+  padding: var(--space-1) 0;
+  border-bottom: 1px dashed rgba(140, 149, 134, 0.2);
+}
+
+.practice-mark {
+  font-family: var(--font-display);
+  color: var(--color-gold);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   Crafted Communication Approach
+   ============================================ */
+.approach {
+  padding: var(--space-6) var(--space-3);
+}
+
+.framework-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.framework-card {
+  background: var(--color-bg-raised);
+  border: 1px solid rgba(212, 175, 106, 0.15);
+  padding: var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.framework-card span {
+  font-family: var(--font-display);
+  color: var(--color-champagne);
+  font-size: 1.05rem;
+}
+
+.framework-card i {
+  font-style: normal;
+  color: var(--color-gold);
+}
+
+/* ============================================
+   Learning Formats
+   ============================================ */
+.formats {
+  background: var(--color-bg-section);
+  padding: var(--space-6) var(--space-3);
+  border-top: 1px solid rgba(212, 175, 106, 0.12);
+}
+
+.formats-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-2);
+}
+
+.format-card {
+  background: var(--color-bg-raised);
+  border: 1px solid rgba(212, 175, 106, 0.15);
+  padding: var(--space-3) var(--space-2);
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--color-champagne);
+}
+
+/* ============================================
+   Why Guild Atelier
+   ============================================ */
+.why {
+  padding: var(--space-6) var(--space-3);
+  text-align: center;
+}
+
+.why-list {
+  list-style: none;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.why-list li {
+  font-size: 0.98rem;
+  color: var(--color-sage);
+  padding-left: 1.4rem;
+  position: relative;
+  text-align: left;
+}
+.why-list li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--color-gold);
+  font-size: 0.6rem;
+  top: 0.45em;
+}
+
+.why-founder {
+  max-width: 480px;
+  margin: var(--space-4) auto 0;
+  font-size: 0.88rem;
+  color: var(--color-sage-dim);
+  font-style: italic;
+}
+
+/* ============================================
+   Testimonials
+   ============================================ */
+.testimonials {
+  background: var(--color-bg-section);
+  padding: var(--space-6) var(--space-3);
+  border-top: 1px solid rgba(212, 175, 106, 0.12);
+}
+
+.testimonial-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.testimonial-card {
+  background: var(--color-bg-raised);
+  border: 1px dashed rgba(212, 175, 106, 0.3);
+  padding: var(--space-5) var(--space-2);
+  text-align: center;
+  color: var(--color-sage-dim);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   Final CTA
+   ============================================ */
+.contact {
+  text-align: center;
+  padding: var(--space-6) var(--space-3) var(--space-7);
+}
+.contact h2 {
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+}
+.contact > p {
+  max-width: 560px;
+  margin: var(--space-2) auto 0;
+  color: var(--color-sage);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 900px) {
+  .audience-grid { grid-template-columns: repeat(2, 1fr); }
+  .formats-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .practice-grid { grid-template-columns: 1fr; }
+  .framework-grid { grid-template-columns: 1fr; }
+  .testimonial-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .audience-grid { grid-template-columns: 1fr; }
+  .formats-grid { grid-template-columns: repeat(2, 1fr); }
+}
