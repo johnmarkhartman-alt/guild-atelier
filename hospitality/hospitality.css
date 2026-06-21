@@ -1,0 +1,198 @@
+/* ============================================
+   Hospitality Communication — page-specific styles
+   Extends the main Guild Atelier design tokens
+   ============================================ */
+
+.hero-philosophy {
+  font-size: 1.1rem;
+  color: var(--color-champagne);
+  max-width: 560px;
+  line-height: 1.65;
+  margin: var(--space-2) auto 0;
+}
+
+.hero-lede {
+  font-size: 0.95rem;
+  color: var(--color-sage);
+  max-width: 480px;
+  margin: var(--space-2) auto 0;
+}
+
+/* ============================================
+   What We Offer
+   ============================================ */
+.offerings {
+  background: var(--color-bg-section);
+  padding: var(--space-6) var(--space-3);
+  border-top: 1px solid rgba(212, 175, 106, 0.12);
+}
+
+.offering-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.offering-card {
+  background: var(--color-bg-raised);
+  border: 1px solid rgba(212, 175, 106, 0.15);
+  padding: var(--space-3);
+}
+
+.offering-num {
+  font-family: var(--font-display);
+  color: var(--color-gold);
+  font-size: 1.4rem;
+  margin-bottom: var(--space-1);
+}
+
+.offering-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.offering-card p {
+  font-size: 0.85rem;
+  color: var(--color-sage);
+  line-height: 1.5;
+}
+
+/* ============================================
+   Signature Program
+   ============================================ */
+.program {
+  padding: var(--space-6) var(--space-3);
+}
+
+.program-list {
+  max-width: 640px;
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.program-list li {
+  background: var(--color-bg-raised);
+  border-left: 2px solid var(--color-gold);
+  padding: var(--space-2) var(--space-3);
+  font-size: 0.95rem;
+  color: var(--color-champagne);
+}
+
+.program-week {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 600;
+  margin-right: 0.6rem;
+}
+
+/* ============================================
+   About the Founder
+   ============================================ */
+.founder {
+  background: var(--color-bg-section);
+  padding: var(--space-6) var(--space-3);
+  border-top: 1px solid rgba(212, 175, 106, 0.12);
+}
+
+.founder-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.founder-photo {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid rgba(212, 175, 106, 0.3);
+}
+
+.founder-text h2 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  margin: var(--space-1) 0 4px;
+}
+
+.founder-title {
+  font-size: 0.85rem;
+  color: var(--color-gold);
+  margin-bottom: var(--space-2);
+}
+
+.founder-text p {
+  font-size: 0.92rem;
+  color: var(--color-sage);
+  margin-bottom: var(--space-2);
+  line-height: 1.65;
+}
+
+/* ============================================
+   Download Portfolio
+   ============================================ */
+.portfolio {
+  text-align: center;
+  padding: var(--space-6) var(--space-3) var(--space-6);
+}
+
+.portfolio h2 {
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+}
+
+.portfolio > p {
+  max-width: 520px;
+  margin: var(--space-2) auto 0;
+  color: var(--color-sage);
+}
+
+.btn-portfolio {
+  display: inline-block;
+  margin-top: var(--space-3);
+  padding: 0.9em 2.4em;
+  background: var(--color-gold);
+  color: var(--color-bg-deep);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border-radius: 8px;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.btn-portfolio:hover {
+  background: var(--color-gold-dim);
+  transform: translateY(-2px);
+}
+
+.portfolio-contact {
+  margin-top: var(--space-4) !important;
+  font-size: 0.85rem !important;
+  color: var(--color-sage-dim) !important;
+  line-height: 1.7;
+}
+.portfolio-contact a {
+  color: var(--color-gold);
+}
+.portfolio-contact a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 860px) {
+  .offering-grid { grid-template-columns: repeat(2, 1fr); }
+  .founder-inner { grid-template-columns: 1fr; text-align: center; }
+  .founder-photo { max-width: 220px; margin: 0 auto; }
+}
+
+@media (max-width: 480px) {
+  .offering-grid { grid-template-columns: 1fr; }
+}
