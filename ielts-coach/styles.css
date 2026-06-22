@@ -412,7 +412,28 @@ a:focus-visible, button:focus-visible {
   font-size: 1.05rem;
   color: var(--color-ink);
   line-height: 1.7;
+  margin-bottom: var(--space-3);
+}
+
+.progress-lead + .progress-lead {
+  color: var(--color-stone);
+  font-size: 0.98rem;
   margin-bottom: var(--space-4);
+}
+
+.three-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: var(--space-2) 0 var(--space-3);
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--color-gold);
+}
+
+.three-questions span {
+  font-size: 0.98rem;
+  color: var(--color-navy);
+  font-weight: 500;
 }
 
 .wins-grid {
@@ -561,10 +582,13 @@ a:focus-visible, button:focus-visible {
 
 .closing-sub {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
   color: var(--color-gold);
   font-style: italic;
-  margin-bottom: var(--space-4);
+  font-weight: 500;
+  margin: var(--space-3) 0 var(--space-5);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
 }
 
 .closing-body {
