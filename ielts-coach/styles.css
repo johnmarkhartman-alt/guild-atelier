@@ -626,3 +626,116 @@ a:focus-visible, button:focus-visible {
   .wins-grid { grid-template-columns: 1fr; }
   .visibility-inner { grid-template-columns: 1fr; }
 }
+
+/* ============================================
+   Payment Options Section
+   ============================================ */
+.payment {
+  background: var(--color-navy);
+  padding: var(--space-6) var(--space-3);
+  border-top: 1px solid rgba(194, 165, 86, 0.15);
+}
+
+.payment .section-head h2 {
+  color: #F4F1E8;
+}
+
+.payment .eyebrow {
+  color: var(--color-gold);
+}
+
+.payment .section-lede {
+  color: var(--color-stone);
+}
+
+.payment-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.payment-card {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(194, 165, 86, 0.2);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  text-align: center;
+}
+
+.payment-card-label {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: #F4F1E8;
+  margin-bottom: 0.4rem;
+}
+
+.payment-card-desc {
+  font-size: 0.88rem;
+  color: var(--color-stone);
+  margin-bottom: var(--space-3);
+  line-height: 1.6;
+}
+
+.payment-card-desc strong {
+  color: #F4F1E8;
+}
+
+.payment-divider {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+  padding-top: var(--space-5);
+  flex-shrink: 0;
+}
+
+.qr-image {
+  max-width: 200px;
+  margin: 0 auto var(--space-2);
+  border-radius: 8px;
+  background: #fff;
+  padding: 8px;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .qr-image { max-width: 260px; }
+}
+
+.qr-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.82rem;
+  color: var(--color-stone);
+  text-align: left;
+  background: rgba(0,0,0,0.2);
+  border-radius: var(--radius);
+  padding: var(--space-2);
+  margin: var(--space-2) 0;
+}
+
+.qr-details strong {
+  color: #F4F1E8;
+}
+
+.qr-note {
+  font-size: 0.78rem;
+  color: var(--color-stone);
+  font-style: italic;
+  margin-top: var(--space-1);
+}
+
+@media (max-width: 640px) {
+  .payment-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .payment-divider {
+    text-align: center;
+    padding-top: 0;
+  }
+}
