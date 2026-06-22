@@ -359,3 +359,246 @@ a:focus-visible, button:focus-visible {
   .hero { padding: var(--space-5) var(--space-2) var(--space-4); }
   .browser-chrome { padding: 10px 12px; }
 }
+
+/* ============================================
+   REWRITE — New sections (teacher-centered page)
+   ============================================ */
+
+/* Challenge Section */
+.challenge {
+  background: var(--color-cream-dim);
+  padding: var(--space-6) var(--space-3);
+  border-top: 1px solid rgba(16,30,45,0.06);
+}
+
+.challenge-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.challenge-col p {
+  font-size: 1rem;
+  color: var(--color-ink);
+  margin-bottom: var(--space-2);
+  line-height: 1.7;
+}
+
+.pull-quote {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-navy);
+  border-left: 3px solid var(--color-gold);
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-3);
+  line-height: 1.4;
+}
+
+/* Progress Section */
+.progress-section {
+  padding: var(--space-6) var(--space-3);
+}
+
+.progress-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.progress-lead {
+  font-size: 1.05rem;
+  color: var(--color-ink);
+  line-height: 1.7;
+  margin-bottom: var(--space-4);
+}
+
+.wins-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.win-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  background: var(--color-cream-dim);
+  border: 1px solid rgba(16,30,45,0.08);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+}
+
+.win-mark {
+  color: var(--color-gold);
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.win-card p {
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.progress-note {
+  font-size: 0.98rem;
+  color: var(--color-stone);
+  margin-bottom: var(--space-2);
+  line-height: 1.7;
+}
+
+/* Guided Practice Section */
+.guided {
+  background: var(--color-cream-dim);
+  padding: var(--space-6) var(--space-3);
+  border-top: 1px solid rgba(16,30,45,0.06);
+}
+
+.section-lede {
+  font-size: 1rem;
+  color: var(--color-stone);
+  margin-top: var(--space-2);
+}
+
+.guided-grid {
+  max-width: 960px;
+  margin: 0 auto var(--space-5);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.guided-card {
+  background: var(--color-cream);
+  border: 1px solid rgba(16,30,45,0.08);
+  padding: var(--space-3);
+  border-radius: var(--radius);
+}
+
+.guided-card h4 {
+  font-size: 1.05rem;
+  color: var(--color-navy);
+  margin-bottom: 6px;
+}
+
+.guided-card p {
+  font-size: 0.88rem;
+  color: var(--color-stone);
+  line-height: 1.6;
+}
+
+.guided .browser-frame {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* Visibility Section */
+.visibility {
+  padding: var(--space-6) var(--space-3);
+}
+
+.visibility-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.visibility-col p {
+  font-size: 1rem;
+  color: var(--color-ink);
+  margin-bottom: var(--space-2);
+  line-height: 1.7;
+}
+
+.visibility-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.visibility-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+}
+
+.vis-mark {
+  color: #5C8A6B;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Closing Section */
+.closing {
+  background: var(--color-navy);
+  padding: var(--space-6) var(--space-3) var(--space-7);
+  text-align: center;
+}
+
+.closing-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.closing-headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: #F4F1E8;
+  line-height: 1.3;
+  margin-bottom: var(--space-1);
+}
+
+.closing-sub {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--color-gold);
+  font-style: italic;
+  margin-bottom: var(--space-4);
+}
+
+.closing-body {
+  font-size: 0.98rem;
+  color: var(--color-stone);
+  margin-bottom: var(--space-2);
+  line-height: 1.7;
+}
+
+.closing .hero-actions {
+  margin-top: var(--space-4);
+}
+
+.closing .btn-primary {
+  background: var(--color-gold);
+  color: var(--color-navy);
+  border-color: var(--color-gold);
+}
+.closing .btn-primary:hover {
+  background: var(--color-gold-bright);
+}
+.closing .btn-secondary {
+  border-color: var(--color-gold);
+  color: #F4F1E8;
+}
+.closing .btn-secondary:hover {
+  background: var(--color-gold);
+  color: var(--color-navy);
+}
+
+/* Responsive additions */
+@media (max-width: 760px) {
+  .challenge-inner { grid-template-columns: 1fr; }
+  .guided-grid { grid-template-columns: 1fr; }
+  .wins-grid { grid-template-columns: 1fr; }
+  .visibility-inner { grid-template-columns: 1fr; }
+}
