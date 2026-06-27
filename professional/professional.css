@@ -340,3 +340,105 @@
   .audience-grid { grid-template-columns: 1fr; }
   .formats-grid { grid-template-columns: repeat(2, 1fr); }
 }
+/* ─────────────────────────────────────────────────────────────
+   PROSPECTUS DOWNLOAD SECTION
+   Append this to professional.css
+   ───────────────────────────────────────────────────────────── */
+
+.prospectus-download {
+  background: linear-gradient(
+    135deg,
+    #1a1c2e 0%,
+    #15170f 60%,
+    #1d1e17 100%
+  );
+  padding: 5rem 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle leather-tone top border */
+.prospectus-download::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #3d2410,
+    #8b5e3c,
+    #d4af6a,
+    #8b5e3c,
+    #3d2410
+  );
+}
+
+.prospectus-download-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Eyebrow inherits site .eyebrow but needs gold colour on dark bg */
+.prospectus-download .eyebrow {
+  color: #b8965a;
+  letter-spacing: 0.12em;
+}
+
+.prospectus-download h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 500;
+  color: #d4af6a;
+  margin: 0.5rem 0 0;
+  line-height: 1.15;
+}
+
+/* Divider adapts to dark background */
+.prospectus-download .divider span {
+  background: #8b5e3c;
+}
+.prospectus-download .divider i {
+  background: #d4af6a;
+}
+
+.prospectus-copy {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #c5ad90;
+  margin: 0 0 1rem;
+}
+
+.prospectus-download .hero-actions {
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+/* On dark background, btn-primary reads cleanly as-is.
+   No overrides needed if the site's btn-primary already uses
+   gold/champagne colours. If the button looks wrong, uncomment: */
+/*
+.prospectus-download .btn-primary {
+  background: #d4af6a;
+  color: #15170f;
+  border-color: #d4af6a;
+}
+.prospectus-download .btn-primary:hover {
+  background: #b8965a;
+  border-color: #b8965a;
+}
+*/
+
+@media (max-width: 640px) {
+  .prospectus-download {
+    padding: 3.5rem 1.25rem;
+  }
+  .prospectus-download .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
