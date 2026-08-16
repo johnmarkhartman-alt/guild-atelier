@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +35,18 @@
         <span class="ga-lang-divider">/</span>
         <span class="ga-lang-option ga-lang-vi">VI</span>
       </button>
+      <button type="button" class="ga-menu-toggle" id="ga-menu-toggle" aria-expanded="false" aria-controls="ga-mobile-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
+  </div>
+  <div id="ga-mobile-nav" class="ga-mobile-nav" hidden>
+    <a href="#cross-cultural">Cross-Cultural Consulting</a>
+    <a href="hospitality/">Hospitality</a>
+    <a href="#communication">Communication &amp; Education</a>
+    <a href="notes/">Insights</a>
+    <a href="#background">About</a>
+    <a href="#contact" class="ga-btn">Start a Conversation</a>
   </div>
 </header>
 
@@ -43,7 +55,6 @@
   <!-- 1. HERO -->
   <section class="ga-hero" id="top">
     <div class="ga-hero-inner">
-      <img src="images/guild-rings-mark.png" alt="" class="ga-mark" aria-hidden="true">
       <h1 class="ga-hero-title">Culture. Communication. Organizations.</h1>
       <div class="ga-hero-body">
         <p>Guild Atelier helps leaders and organizations work more effectively when differences in culture, communication, and expectations create friction — particularly across Vietnam, East Asia, and multinational environments.</p>
@@ -114,7 +125,6 @@
         <h2>Built on time actually spent inside these problems</h2>
         <p>Guild Atelier is led by John Hartman, whose background spans multinational operations, manufacturing, food safety and quality management, education and professional communication, alongside years of work in Japan and Vietnam. That combination — organizational systems on one side, cross-cultural and communication work on the other — is what shapes how we approach an engagement: looking for what's actually happening in a specific organization before suggesting what to do about it.</p>
         <p>Recent work includes executive cross-cultural leadership consulting supporting a senior leader's transition into the Vietnamese market.</p>
-        <a href="about/" class="ga-link">More about our background →</a>
       </div>
     </div>
   </section>
@@ -126,7 +136,6 @@
         <p class="ga-case-label">From the Practice</p>
         <h3>Preparing a Japanese Executive to Lead in Vietnam</h3>
         <p>When a Japanese executive was preparing to lead a team inside a Vietnamese retail operation, a relocation and intercultural consulting partner engaged Guild Atelier for more than a country orientation. We built a tailored ninety-minute executive briefing connecting Vietnamese workplace culture and consumer behavior directly to daily leadership decisions: how to confirm real understanding across languages, when a polite yes signals respect rather than comprehension, and how trust shapes the pace and quality of decisions. Delivered live, the session moved beyond cultural facts to the specific choices of communication, trust, and decision-making that leadership across Japanese, Vietnamese, and English-speaking environments requires.</p>
-        <a href="case-studies/preparing-a-japanese-executive-to-lead-in-vietnam/" class="ga-link">Read the case study →</a>
       </div>
     </div>
   </section>
@@ -194,5 +203,36 @@
 </footer>
 
 <script src="js/lang-toggle.js"></script>
+<script>
+// Homepage-only mobile nav toggle. Scoped here rather than in a shared
+// file since it controls markup that exists only on this page.
+(function () {
+  var toggle = document.getElementById('ga-menu-toggle');
+  var panel = document.getElementById('ga-mobile-nav');
+  if (!toggle || !panel) return;
+
+  function closeMenu() {
+    panel.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  function openMenu() {
+    panel.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+
+  toggle.addEventListener('click', function () {
+    var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    if (isOpen) { closeMenu(); } else { openMenu(); }
+  });
+
+  panel.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') closeMenu();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+})();
+</script>
 </body>
 </html>
