@@ -245,8 +245,12 @@
   color: var(--ivory) !important;
 }
 
+/* The homepage's new copy has no approved Vietnamese translations yet,
+   so the toggle is hidden here to avoid promising functionality the
+   page can't deliver. The underlying toggle system (js/lang-toggle.js)
+   is untouched and still runs on every other page. */
 .ga-lang-toggle {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 0.4em;
   background: none;
@@ -265,8 +269,57 @@
 html[data-current-lang="en"] .ga-lang-en { color: var(--umber); }
 html[data-current-lang="vi"] .ga-lang-vi { color: var(--umber); }
 
-/* nav is deliberately reduced on smaller screens; see responsive block */
+/* nav is restructured on smaller screens; see responsive block */
 .ga-nav-links { display: flex; align-items: center; gap: var(--sp-3); }
+
+/* Hamburger toggle — hidden on desktop, shown only at the mobile breakpoint */
+.ga-menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  background: none;
+  border: 1px solid var(--umber-line-strong);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.ga-menu-toggle span {
+  display: block;
+  width: 15px;
+  height: 1px;
+  background: var(--ink);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.ga-menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.ga-menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.ga-menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* Mobile nav panel — plain vertical list, native [hidden] for accessibility */
+.ga-mobile-nav {
+  display: none;
+}
+.ga-mobile-nav:not([hidden]) {
+  display: flex;
+  flex-direction: column;
+  background: var(--ivory);
+  border-top: 1px solid var(--umber-line);
+  padding: var(--sp-1) var(--sp-3) var(--sp-3);
+}
+.ga-mobile-nav a:not(.ga-btn) {
+  padding: 0.85rem 0.1rem;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--umber-line);
+}
+.ga-mobile-nav a:not(.ga-btn):hover { color: var(--umber); }
+.ga-mobile-nav .ga-btn {
+  margin-top: var(--sp-2);
+  text-align: center;
+}
 
 /* ============================================================
    1. Hero — typography only
@@ -278,12 +331,6 @@ html[data-current-lang="vi"] .ga-lang-vi { color: var(--umber); }
 .ga-hero-inner {
   max-width: 880px;
   margin: 0 auto;
-}
-
-.ga-hero .ga-mark {
-  width: 42px;
-  height: 42px;
-  margin-bottom: var(--sp-3);
 }
 
 .ga-hero-title {
@@ -461,8 +508,6 @@ html[data-current-lang="vi"] .ga-lang-vi { color: var(--umber); }
 }
 .ga-background p + p { margin-top: var(--sp-2); }
 
-.ga-background .ga-link { margin-top: var(--sp-3); }
-
 /* ============================================================
    6. From the Practice — case note
    ============================================================ */
@@ -497,8 +542,6 @@ html[data-current-lang="vi"] .ga-lang-vi { color: var(--umber); }
   color: var(--ink-soft);
   line-height: 1.8;
 }
-
-.ga-case .ga-link { margin-top: var(--sp-3); }
 
 /* ============================================================
    7. Recent Thinking — editorial index, no thumbnails
@@ -678,9 +721,10 @@ html[data-current-lang="vi"] .ga-lang-vi { color: var(--umber); }
 }
 
 @media (max-width: 860px) {
-  .ga-nav-links a:not(.ga-nav-cta) { display: none; }
+  .ga-nav-links { display: none; }
+  .ga-nav-cta { display: none; }
+  .ga-menu-toggle { display: flex; }
   .ga-header-inner { padding: 0.9rem var(--sp-3); }
-  .ga-lang-toggle { padding: 0.4em 0.6em; font-size: 0.68rem; }
 
   .ga-hero { padding: var(--sp-6) var(--sp-3) var(--sp-5); }
   .ga-hero-title { max-width: 100%; }
