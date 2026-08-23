@@ -1,1 +1,260 @@
+/* ============================================================
+   GUILD ATELIER — CROSS-CULTURAL & EXECUTIVE CONSULTING
+   Page-specific stylesheet. Loaded alongside /css/homepage.css,
+   which supplies the Refined Atelier tokens (:root), reset, and
+   shared components (.ga-container, .ga-eyebrow, .ga-link, .ga-btn,
+   .ga-hairline, header, .ga-trap, .ga-case, .ga-background,
+   .ga-closing, .ga-footer, mobile nav).
+   This file only adds what the homepage doesn't already define,
+   and never redeclares homepage selectors, so /index.html and its
+   CSS remain completely untouched.
+   ============================================================ */
 
+/* ---- Active nav state (this page only) ---- */
+.ga-nav a.ga-nav-current:not(.ga-nav-cta) {
+  color: var(--umber);
+  border-bottom: 1px solid var(--umber-line-strong);
+  padding-bottom: 0.15em;
+}
+.ga-mobile-nav a.ga-nav-current {
+  color: var(--umber);
+}
+
+/* ============================================================
+   Page Hero — typography only, one notch quieter than the
+   homepage hero so the visitor reads this as the deeper page,
+   not a second homepage.
+   ============================================================ */
+.ga-page-hero {
+  padding: var(--sp-6) var(--sp-4) var(--sp-5);
+}
+
+.ga-page-hero-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.ga-page-hero-title {
+  font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+  line-height: 1.22;
+  max-width: 17ch;
+}
+
+.ga-page-hero-body {
+  margin-top: var(--sp-4);
+  max-width: 620px;
+}
+.ga-page-hero-body p {
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.ga-page-hero-ctas {
+  margin-top: var(--sp-4);
+}
+
+/* ============================================================
+   Shared "reframing" section pattern — used by The Problem and
+   Culture or System?, so the two sections visually echo each
+   other as specified in the design notes.
+   ============================================================ */
+.ga-reframe {
+  padding: var(--sp-6) var(--sp-4);
+  border-top: 1px solid var(--umber-line);
+}
+.ga-reframe-inner {
+  max-width: var(--w-essay);
+  margin: 0 auto;
+}
+.ga-reframe h2 {
+  font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+  max-width: 20ch;
+  margin-bottom: var(--sp-3);
+}
+.ga-reframe p {
+  font-size: 0.96rem;
+  color: var(--ink-soft);
+  line-height: 1.78;
+}
+.ga-reframe p + p {
+  margin-top: var(--sp-2);
+}
+
+/* the single italic pull line at the base of a reframe section */
+.ga-pull {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  color: var(--umber);
+  line-height: 1.5;
+  margin-top: var(--sp-3);
+}
+
+/* ============================================================
+   The Similarity Trap — eyebrow + pull-quote additions on top
+   of the homepage's existing .ga-trap block, which is reused
+   as-is for background, quote, and body styling.
+   ============================================================ */
+.ga-eyebrow--on-umber {
+  color: var(--gold-on-umber);
+}
+
+.ga-trap-pull {
+  margin-top: var(--sp-3);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--gold-on-umber);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   What We Examine — editorial index, not a card grid
+   ============================================================ */
+.ga-examine {
+  padding: var(--sp-6) var(--sp-4);
+}
+.ga-examine-inner {
+  max-width: 840px;
+  margin: 0 auto;
+}
+.ga-examine-intro {
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  max-width: 62ch;
+  margin-bottom: var(--sp-4);
+}
+.ga-examine-list {
+  border-top: 1px solid var(--umber-line);
+}
+.ga-examine-item {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--sp-4);
+  align-items: baseline;
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--umber-line);
+}
+.ga-examine-label {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink);
+}
+.ga-examine-label span {
+  color: var(--umber);
+  margin-right: 0.6em;
+}
+.ga-examine-q {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   Ways We Work — paired editorial layout, not four service cards
+   ============================================================ */
+.ga-ways {
+  padding: var(--sp-6) var(--sp-4);
+}
+.ga-ways-inner {
+  max-width: var(--w-wide);
+  margin: 0 auto;
+}
+.ga-ways-intro {
+  max-width: 62ch;
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  padding-bottom: var(--sp-4);
+  margin-bottom: var(--sp-5);
+  border-bottom: 1px solid var(--umber-line);
+}
+.ga-ways-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-5);
+}
+.ga-ways-item h4 {
+  font-size: 1.35rem;
+  margin-bottom: var(--sp-1);
+}
+.ga-ways-item p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   How an Engagement Starts
+   ============================================================ */
+.ga-engage {
+  padding: var(--sp-6) var(--sp-4);
+  border-top: 1px solid var(--umber-line);
+}
+.ga-engage-inner {
+  max-width: var(--w-essay);
+  margin: 0 auto;
+}
+.ga-engage h2 {
+  font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+  max-width: 20ch;
+  margin-bottom: var(--sp-3);
+}
+.ga-engage-intro {
+  font-size: 0.96rem;
+  color: var(--ink-soft);
+  line-height: 1.78;
+}
+.ga-engage-list {
+  list-style: none;
+  margin: var(--sp-4) 0;
+  padding: 0;
+  border-top: 1px solid var(--umber-line);
+}
+.ga-engage-list li {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink);
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--umber-line);
+}
+.ga-engage-outro {
+  font-size: 0.96rem;
+  color: var(--ink-soft);
+  line-height: 1.78;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 860px) {
+  .ga-page-hero { padding: var(--sp-5) var(--sp-3) var(--sp-4); }
+  .ga-reframe { padding: var(--sp-5) var(--sp-3); }
+  .ga-examine { padding: var(--sp-5) var(--sp-3); }
+  .ga-ways { padding: var(--sp-5) var(--sp-3); }
+  .ga-engage { padding: var(--sp-5) var(--sp-3); }
+
+  .ga-examine-item {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .ga-ways-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .ga-engage-list li { font-size: 1.08rem; }
+}
