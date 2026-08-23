@@ -1,198 +1,234 @@
-/* ============================================
-   Hospitality Communication — page-specific styles
-   Extends the main Guild Atelier design tokens
-   ============================================ */
+/* ============================================================
+   GUILD ATELIER — HOSPITALITY CONSULTING
+   Page-specific stylesheet. Loaded alongside /css/homepage.css,
+   which supplies the Refined Atelier tokens (:root), reset, and
+   shared components (.ga-container, .ga-eyebrow, .ga-link, .ga-btn,
+   .ga-hairline, header, .ga-trap, .ga-background, .ga-closing,
+   .ga-footer, mobile nav).
+   This file is self-contained: it defines its own section
+   patterns (some intentionally named the same as the equivalent
+   Cross-Cultural page classes, e.g. .ga-reframe, .ga-pull,
+   .ga-examine, .ga-engage) so this page never depends on
+   cross-cultural.css loading. It never redeclares homepage
+   selectors, so /index.html and its CSS remain untouched.
+   ============================================================ */
 
-.hero-philosophy {
-  font-size: 1.1rem;
-  color: var(--color-champagne);
-  max-width: 560px;
-  line-height: 1.65;
-  margin: var(--space-2) auto 0;
+/* ---- Active nav state (this page only) ---- */
+.ga-nav a.ga-nav-current:not(.ga-nav-cta) {
+  color: var(--umber);
+  border-bottom: 1px solid var(--umber-line-strong);
+  padding-bottom: 0.15em;
+}
+.ga-mobile-nav a.ga-nav-current {
+  color: var(--umber);
 }
 
-.hero-lede {
-  font-size: 0.95rem;
-  color: var(--color-sage);
-  max-width: 480px;
-  margin: var(--space-2) auto 0;
+/* ============================================================
+   Page Hero — typography only, one notch quieter than the
+   homepage hero, matching the treatment used on the
+   Cross-Cultural page so the two pages read as siblings.
+   ============================================================ */
+.ga-page-hero {
+  padding: var(--sp-6) var(--sp-4) var(--sp-5);
 }
 
-/* ============================================
-   What We Offer
-   ============================================ */
-.offerings {
-  background: var(--color-bg-section);
-  padding: var(--space-6) var(--space-3);
-  border-top: 1px solid rgba(212, 175, 106, 0.12);
-}
-
-.offering-grid {
-  max-width: 1100px;
+.ga-page-hero-inner {
+  max-width: 820px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-3);
 }
 
-.offering-card {
-  background: var(--color-bg-raised);
-  border: 1px solid rgba(212, 175, 106, 0.15);
-  padding: var(--space-3);
+.ga-page-hero-title {
+  font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+  line-height: 1.22;
+  max-width: 17ch;
 }
 
-.offering-num {
-  font-family: var(--font-display);
-  color: var(--color-gold);
-  font-size: 1.4rem;
-  margin-bottom: var(--space-1);
+.ga-page-hero-body {
+  margin-top: var(--sp-4);
+  max-width: 620px;
 }
-
-.offering-card h4 {
-  font-size: 1.1rem;
-  margin-bottom: 6px;
-}
-
-.offering-card p {
-  font-size: 0.85rem;
-  color: var(--color-sage);
-  line-height: 1.5;
-}
-
-/* ============================================
-   Signature Program
-   ============================================ */
-.program {
-  padding: var(--space-6) var(--space-3);
-}
-
-.program-list {
-  max-width: 640px;
-  margin: 0 auto;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.program-list li {
-  background: var(--color-bg-raised);
-  border-left: 2px solid var(--color-gold);
-  padding: var(--space-2) var(--space-3);
-  font-size: 0.95rem;
-  color: var(--color-champagne);
-}
-
-.program-week {
-  display: inline-block;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  font-weight: 600;
-  margin-right: 0.6rem;
-}
-
-/* ============================================
-   About the Founder
-   ============================================ */
-.founder {
-  background: var(--color-bg-section);
-  padding: var(--space-6) var(--space-3);
-  border-top: 1px solid rgba(212, 175, 106, 0.12);
-}
-
-.founder-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: var(--space-4);
-  align-items: start;
-}
-
-.founder-photo {
-  width: 100%;
-  border-radius: var(--radius);
-  border: 1px solid rgba(212, 175, 106, 0.3);
-}
-
-.founder-text h2 {
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
-  margin: var(--space-1) 0 4px;
-}
-
-.founder-title {
-  font-size: 0.85rem;
-  color: var(--color-gold);
-  margin-bottom: var(--space-2);
-}
-
-.founder-text p {
-  font-size: 0.92rem;
-  color: var(--color-sage);
-  margin-bottom: var(--space-2);
-  line-height: 1.65;
-}
-
-/* ============================================
-   Download Portfolio
-   ============================================ */
-.portfolio {
-  text-align: center;
-  padding: var(--space-6) var(--space-3) var(--space-6);
-}
-
-.portfolio h2 {
-  font-size: clamp(1.7rem, 3vw, 2.3rem);
-}
-
-.portfolio > p {
-  max-width: 520px;
-  margin: var(--space-2) auto 0;
-  color: var(--color-sage);
-}
-
-.btn-portfolio {
-  display: inline-block;
-  margin-top: var(--space-3);
-  padding: 0.9em 2.4em;
-  background: var(--color-gold);
-  color: var(--color-bg-deep);
-  font-family: var(--font-body);
-  font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  border-radius: 8px;
-  transition: background 0.25s ease, transform 0.25s ease;
-}
-.btn-portfolio:hover {
-  background: var(--color-gold-dim);
-  transform: translateY(-2px);
-}
-
-.portfolio-contact {
-  margin-top: var(--space-4) !important;
-  font-size: 0.85rem !important;
-  color: var(--color-sage-dim) !important;
+.ga-page-hero-body p {
+  font-size: 1.02rem;
+  color: var(--ink-soft);
   line-height: 1.7;
 }
-.portfolio-contact a {
-  color: var(--color-gold);
-}
-.portfolio-contact a:hover {
-  text-decoration: underline;
+
+.ga-page-hero-ctas {
+  margin-top: var(--sp-4);
 }
 
-/* ============================================
+/* ============================================================
+   Shared light editorial pattern — used by The Gap, Where
+   Service Actually Happens, and Service Recovery, so those
+   three sections visually echo one another.
+   ============================================================ */
+.ga-reframe {
+  padding: var(--sp-6) var(--sp-4);
+  border-top: 1px solid var(--umber-line);
+}
+.ga-reframe-inner {
+  max-width: var(--w-essay);
+  margin: 0 auto;
+}
+.ga-reframe h2 {
+  font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+  max-width: 22ch;
+  margin-bottom: var(--sp-3);
+}
+.ga-reframe p {
+  font-size: 0.96rem;
+  color: var(--ink-soft);
+  line-height: 1.78;
+}
+.ga-reframe p + p {
+  margin-top: var(--sp-2);
+}
+
+/* the italic pull line used where a section calls for one
+   (Service Recovery). Where Service Actually Happens ends on
+   a plain paragraph deliberately and does NOT use this class. */
+.ga-pull {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  color: var(--umber);
+  line-height: 1.5;
+  margin-top: var(--sp-3);
+}
+
+/* ---- eyebrow on umber, for the Training or Something Else?
+   section, which reuses the homepage's .ga-trap component ---- */
+.ga-eyebrow--on-umber {
+  color: var(--gold-on-umber);
+}
+
+/* ============================================================
+   What We Look At — editorial index, not a card grid
+   ============================================================ */
+.ga-examine {
+  padding: var(--sp-6) var(--sp-4);
+}
+.ga-examine-inner {
+  max-width: 840px;
+  margin: 0 auto;
+}
+.ga-examine-intro {
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  max-width: 62ch;
+  margin-bottom: var(--sp-4);
+}
+.ga-examine-list {
+  border-top: 1px solid var(--umber-line);
+}
+.ga-examine-item {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--sp-4);
+  align-items: baseline;
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--umber-line);
+}
+.ga-examine-label {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink);
+}
+.ga-examine-q {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   Ways We Work — single-column editorial index. Five items
+   don't divide cleanly into the two-column grid used on the
+   Cross-Cultural page, so this page uses a related but distinct
+   pattern: one column, thin rules, larger serif titles.
+   ============================================================ */
+.ga-ways {
+  padding: var(--sp-6) var(--sp-4);
+}
+.ga-ways-inner {
+  max-width: var(--w-essay);
+  margin: 0 auto;
+}
+.ga-ways-intro {
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  padding-bottom: var(--sp-4);
+  margin-bottom: var(--sp-2);
+  border-bottom: 1px solid var(--umber-line);
+}
+.ga-ways-list {
+  border-top: 1px solid var(--umber-line);
+}
+.ga-ways-item {
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--umber-line);
+}
+.ga-ways-item h4 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+}
+.ga-ways-item p {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   How an Engagement Starts
+   ============================================================ */
+.ga-engage {
+  padding: var(--sp-6) var(--sp-4);
+  border-top: 1px solid var(--umber-line);
+}
+.ga-engage-inner {
+  max-width: var(--w-essay);
+  margin: 0 auto;
+}
+.ga-engage h2 {
+  font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+  max-width: 22ch;
+  margin-bottom: var(--sp-3);
+}
+.ga-engage-intro {
+  font-size: 0.96rem;
+  color: var(--ink-soft);
+  line-height: 1.78;
+}
+.ga-engage-list {
+  list-style: none;
+  margin: var(--sp-4) 0;
+  padding: 0;
+  border-top: 1px solid var(--umber-line);
+}
+.ga-engage-list li {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink);
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--umber-line);
+}
+.ga-engage-outro {
+  font-size: 0.96rem;
+  color: var(--ink-soft);
+  line-height: 1.78;
+}
+
+/* ============================================================
    Responsive
-   ============================================ */
+   ============================================================ */
 @media (max-width: 860px) {
-  .offering-grid { grid-template-columns: repeat(2, 1fr); }
-  .founder-inner { grid-template-columns: 1fr; text-align: center; }
-  .founder-photo { max-width: 220px; margin: 0 auto; }
-}
-
-@media (max-width: 480px) {
-  .offering-grid { grid-template-columns: 1fr; }
-}
+  .ga-page-hero { padding: var(--sp-5) var(--sp-3)
