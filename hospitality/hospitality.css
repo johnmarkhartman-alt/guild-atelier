@@ -231,4 +231,18 @@
    Responsive
    ============================================================ */
 @media (max-width: 860px) {
-  .ga-page-hero { padding: var(--sp-5) var(--sp-3)
+  .ga-page-hero { padding: var(--sp-5) var(--sp-3) var(--sp-4); }
+  .ga-reframe { padding: var(--sp-5) var(--sp-3); }
+  .ga-examine { padding: var(--sp-5) var(--sp-3); }
+  .ga-ways { padding: var(--sp-5) var(--sp-3); }
+  .ga-engage { padding: var(--sp-5) var(--sp-3); }
+
+  .ga-examine-item {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ga-engage-list li { font-size: 1.05rem; }
+}
