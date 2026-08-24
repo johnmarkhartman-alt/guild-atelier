@@ -25,7 +25,7 @@
       <div class="ga-nav-links">
         <a href="./" class="ga-nav-current" aria-current="page">Cross-Cultural Consulting</a>
         <a href="../hospitality/">Hospitality</a>
-        <a href="../#communication">Communication &amp; Education</a>
+        <a href="../communication-education/">Communication &amp; Education</a>
         <a href="../notes/">Insights</a>
         <a href="../#background">About</a>
       </div>
@@ -43,7 +43,7 @@
   <div id="ga-mobile-nav" class="ga-mobile-nav" hidden>
     <a href="./" class="ga-nav-current" aria-current="page">Cross-Cultural Consulting</a>
     <a href="../hospitality/">Hospitality</a>
-    <a href="../#communication">Communication &amp; Education</a>
+    <a href="../communication-education/">Communication &amp; Education</a>
     <a href="../notes/">Insights</a>
     <a href="../#background">About</a>
     <a href="#contact" class="ga-btn">Start a Conversation</a>
@@ -154,116 +154,4 @@
         </div>
         <div class="ga-ways-item">
           <h4>Cross-Cultural Workshops</h4>
-          <p>Sessions built around a team's actual operating situations and decisions, not a generic cultural-awareness curriculum. Content is developed from the specific environment the group works in.</p>
-        </div>
-        <div class="ga-ways-item">
-          <h4>Advisory &amp; Problem-Solving</h4>
-          <p>For organizations facing a recurring problem that involves some combination of culture, communication, and organizational expectations. Often the first and most valuable step is simply establishing what the problem actually is.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. FROM THE PRACTICE -->
-  <section class="ga-case" id="case-study">
-    <div class="ga-container">
-      <div class="ga-case-inner">
-        <p class="ga-case-label">From the Practice</p>
-        <h3>Preparing a Japanese Executive to Lead in Vietnam</h3>
-        <p>When a Japanese executive was preparing to lead a team inside a Vietnamese retail operation, a relocation and intercultural consulting partner engaged Guild Atelier for more than a country orientation. We built a tailored ninety-minute executive briefing connecting Vietnamese workplace culture and consumer behavior directly to daily leadership decisions: how to confirm real understanding across languages, when a polite yes signals respect rather than comprehension, and how trust shapes the pace and quality of decisions. Delivered live, the session moved beyond cultural facts to the specific choices of communication, trust, and decision-making that leadership across Japanese, Vietnamese, and English-speaking environments requires.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. HOW AN ENGAGEMENT STARTS -->
-  <section class="ga-engage" id="how-it-starts">
-    <div class="ga-engage-inner">
-      <p class="ga-eyebrow">Getting Started</p>
-      <h2>Start with the situation, not the solution.</h2>
-      <p class="ga-engage-intro"> The work begins with a conversation, not a proposal. Before recommending anything, we want to understand:</p>
-      <ul class="ga-engage-list">
-        <li>What is happening?</li>
-        <li>What did you expect to happen instead?</li>
-        <li>Where does the friction actually appear?</li>
-        <li>Who is involved?</li>
-        <li>What have you already tried?</li>
-        <li>What would "better" look like?</li>
-      </ul>
-      <p class="ga-engage-outro">From there, we determine what's actually useful — a briefing, a workshop, leadership preparation, a facilitated discussion, an advisory engagement, or something else built for the specific situation.</p>
-    </div>
-  </section>
-
-  <!-- 9. WHY GUILD ATELIER -->
-  <section class="ga-background" id="why-guild-atelier">
-    <div class="ga-container">
-      <div class="ga-background-inner">
-        <p class="ga-eyebrow">Why Guild Atelier</p>
-        <h2>Culture, communication, and operations belong in the same conversation.</h2>
-        <p>Guild Atelier's founder, John Hartman, brings experience across multinational operations, manufacturing, food safety and quality management, education, and professional communication, alongside years of work in Japan and Vietnam.</p>
-        <p>That combination shapes how Guild Atelier works: cultural observations are only useful once they connect to an actual management decision.</p>
-        <p style="margin-top: var(--sp-3);"><a href="../#background" class="ga-link">Read more about the practice →</a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 10. CLOSING CTA -->
-  <section class="ga-closing" id="contact">
-    <div class="ga-closing-inner">
-      <img src="../images/guild-rings-mark.png" alt="" class="ga-mark" aria-hidden="true">
-      <h2>Start with a conversation</h2>
-      <p>If something isn't working as expected — across cultures, offices, teams, or expectations — tell us what you're seeing.</p>
-      <a href="mailto:hello@guildatelier.com" class="ga-btn ga-btn--solid">Start a Conversation</a>
-    </div>
-  </section>
-
-</main>
-
-<footer class="ga-footer">
-  <img src="../images/guild-rings-mark.png" alt="Guild Atelier" class="ga-mark">
-  <p class="ga-footer-tagline">Guild Atelier — Crafted Communication</p>
-  <nav class="ga-footer-nav">
-    <a href="./">Cross-Cultural Consulting</a>
-    <a href="../hospitality/">Hospitality</a>
-    <a href="../#communication">Communication &amp; Education</a>
-    <a href="../notes/">Insights</a>
-    <a href="../#background">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <p class="ga-footer-email"><a href="mailto:hello@guildatelier.com">hello@guildatelier.com</a></p>
-</footer>
-
-<script src="../js/lang-toggle.js"></script>
-<script>
-// Page-local mobile nav toggle, matching the homepage's implementation
-// (scoped here rather than shared, since it controls markup that only
-// exists on pages that include this header).
-(function () {
-  var toggle = document.getElementById('ga-menu-toggle');
-  var panel = document.getElementById('ga-mobile-nav');
-  if (!toggle || !panel) return;
-
-  function closeMenu() {
-    panel.hidden = true;
-    toggle.setAttribute('aria-expanded', 'false');
-  }
-  function openMenu() {
-    panel.hidden = false;
-    toggle.setAttribute('aria-expanded', 'true');
-  }
-
-  toggle.addEventListener('click', function () {
-    var isOpen = toggle.getAttribute('aria-expanded') === 'true';
-    if (isOpen) { closeMenu(); } else { openMenu(); }
-  });
-
-  panel.addEventListener('click', function (e) {
-    if (e.target.tagName === 'A') closeMenu();
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeMenu();
-  });
-})();
-</script>
-</body>
-</html>
+          <p>Sessions built around a team's actual operating situations and decisions, not a generic cultural-awareness curriculum. Content is developed from the specific
