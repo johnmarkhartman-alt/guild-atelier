@@ -1,0 +1,239 @@
+/* ============================================================
+   GUILD ATELIER — COMMUNICATION & EDUCATION
+   Page-specific stylesheet. Loaded alongside /css/homepage.css,
+   which supplies the Refined Atelier tokens (:root), reset, and
+   shared components (.ga-container, .ga-eyebrow, .ga-link, .ga-btn,
+   .ga-hairline, header, .ga-trap, .ga-background, .ga-closing,
+   .ga-footer, mobile nav).
+   This file is self-contained, following the same pattern as
+   cross-cultural.css and hospitality.css: it defines its own
+   section classes so this page never depends on either of those
+   files loading. It never redeclares homepage selectors, so
+   /index.html and its CSS remain untouched.
+
+   Note: the "Communication Is Practiced" section reuses the
+   homepage's .ga-trap component directly with NO eyebrow markup
+   (per copy-lock correction), so no on-umber eyebrow override is
+   needed in this file, unlike cross-cultural.css / hospitality.css.
+   ============================================================ */
+
+/* ---- Active nav state (this page only) ---- */
+.ga-nav a.ga-nav-current:not(.ga-nav-cta) {
+  color: var(--umber);
+  border-bottom: 1px solid var(--umber-line-strong);
+  padding-bottom: 0.15em;
+}
+.ga-mobile-nav a.ga-nav-current {
+  color: var(--umber);
+}
+
+/* ============================================================
+   Page Hero — typography only, one notch quieter than the
+   homepage hero, matching the treatment used on the other two
+   practice pages so all three read as siblings.
+   ============================================================ */
+.ga-page-hero {
+  padding: var(--sp-6) var(--sp-4) var(--sp-5);
+}
+
+.ga-page-hero-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.ga-page-hero-title {
+  font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+  line-height: 1.22;
+  max-width: 18ch;
+}
+
+.ga-page-hero-body {
+  margin-top: var(--sp-4);
+  max-width: 620px;
+}
+.ga-page-hero-body p {
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.ga-page-hero-ctas {
+  margin-top: var(--sp-4);
+}
+
+/* ============================================================
+   Shared light editorial pattern — used by Knowing vs. Using,
+   Professional Communication, and The Other 166 Hours, so those
+   sections visually echo one another.
+   ============================================================ */
+.ga-reframe {
+  padding: var(--sp-6) var(--sp-4);
+  border-top: 1px solid var(--umber-line);
+}
+.ga-reframe-inner {
+  max-width: var(--w-essay);
+  margin: 0 auto;
+}
+.ga-reframe h2 {
+  font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+  max-width: 22ch;
+  margin-bottom: var(--sp-3);
+}
+.ga-reframe p {
+  font-size: 0.96rem;
+  color: var(--ink-soft);
+  line-height: 1.78;
+}
+.ga-reframe p + p {
+  margin-top: var(--sp-2);
+}
+
+/* the italic pull line used where a section calls for one
+   (Knowing vs. Using). Professional Communication and The Other
+   166 Hours end on plain paragraphs and do NOT use this class. */
+.ga-pull {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  color: var(--umber);
+  line-height: 1.5;
+  margin-top: var(--sp-3);
+}
+
+/* ============================================================
+   What Effective Communication Requires — editorial index
+   ============================================================ */
+.ga-examine {
+  padding: var(--sp-6) var(--sp-4);
+}
+.ga-examine-inner {
+  max-width: 840px;
+  margin: 0 auto;
+}
+.ga-examine-intro {
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  max-width: 62ch;
+  margin-bottom: var(--sp-4);
+}
+.ga-examine-list {
+  border-top: 1px solid var(--umber-line);
+}
+.ga-examine-item {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--sp-4);
+  align-items: baseline;
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--umber-line);
+}
+.ga-examine-label {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink);
+}
+.ga-examine-q {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   Ways We Work — single-column editorial index (five items,
+   same resolution used on the Hospitality page).
+   ============================================================ */
+.ga-ways {
+  padding: var(--sp-6) var(--sp-4);
+}
+.ga-ways-inner {
+  max-width: var(--w-essay);
+  margin: 0 auto;
+}
+.ga-ways-intro {
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  padding-bottom: var(--sp-4);
+  margin-bottom: var(--sp-2);
+  border-bottom: 1px solid var(--umber-line);
+}
+.ga-ways-list {
+  border-top: 1px solid var(--umber-line);
+}
+.ga-ways-item {
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--umber-line);
+}
+.ga-ways-item h4 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+}
+.ga-ways-item p {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   Who This Is For / How It Starts
+   ============================================================ */
+.ga-engage {
+  padding: var(--sp-6) var(--sp-4);
+  border-top: 1px solid var(--umber-line);
+}
+.ga-engage-inner {
+  max-width: var(--w-essay);
+  margin: 0 auto;
+}
+.ga-engage h2 {
+  font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+  max-width: 22ch;
+  margin-bottom: var(--sp-3);
+}
+.ga-engage-intro {
+  font-size: 0.96rem;
+  color: var(--ink-soft);
+  line-height: 1.78;
+}
+.ga-engage-list {
+  list-style: none;
+  margin: var(--sp-4) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--umber-line);
+}
+.ga-engage-list li {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink);
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--umber-line);
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 860px) {
+  .ga-page-hero { padding: var(--sp-5) var(--sp-3) var(--sp-4); }
+  .ga-reframe { padding: var(--sp-5) var(--sp-3); }
+  .ga-examine { padding: var(--sp-5) var(--sp-3); }
+  .ga-ways { padding: var(--sp-5) var(--sp-3); }
+  .ga-engage { padding: var(--sp-5) var(--sp-3); }
+
+  .ga-examine-item {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ga-engage-list li { font-size: 1.05rem; }
+}
