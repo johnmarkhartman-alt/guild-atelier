@@ -24,7 +24,7 @@
       <div class="ga-nav-links">
         <a href="cross-cultural-executive-consulting/">Cross-Cultural Consulting</a>
         <a href="hospitality/">Hospitality</a>
-        <a href="#communication">Communication &amp; Education</a>
+        <a href="communication-education/">Communication &amp; Education</a>
         <a href="notes/">Insights</a>
         <a href="#background">About</a>
       </div>
@@ -42,7 +42,7 @@
   <div id="ga-mobile-nav" class="ga-mobile-nav" hidden>
     <a href="cross-cultural-executive-consulting/">Cross-Cultural Consulting</a>
     <a href="hospitality/">Hospitality</a>
-    <a href="#communication">Communication &amp; Education</a>
+    <a href="communication-education/">Communication &amp; Education</a>
     <a href="notes/">Insights</a>
     <a href="#background">About</a>
     <a href="#contact" class="ga-btn">Start a Conversation</a>
@@ -99,7 +99,7 @@
         <div class="ga-work-item">
           <h4>Professional Communication</h4>
           <p>Helping professionals and teams communicate with greater clarity, confidence, and purpose — in meetings, negotiations, presentations, and the difficult conversations that don't have a script. This includes organizational communication work with teams, and English-language development for professionals and learners who want to work in it.</p>
-          <a href="professional/" class="ga-link">Explore Professional Communication</a>
+          <a href="communication-education/" class="ga-link">Explore Communication &amp; Education</a>
         </div>
       </div>
 
@@ -151,82 +151,4 @@
             <span class="ga-insight-desc">Meetings demand a different skill set than the one most English classes teach.</span>
           </a>
         </div>
-        <a href="notes/" class="ga-link">Visit Insights →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. COMMUNICATION, LEARNED AND PRACTICED -->
-  <section class="ga-comm" id="communication">
-    <div class="ga-container--narrow">
-      <div class="ga-comm-inner">
-        <h3>Communication, Learned and Practiced</h3>
-        <p>Guild Atelier's consulting work grew out of years of communication training and education — and that work continues. This side of the practice helps professional teams build clarity and confidence in English for meetings, presentations, and everyday work, and supports individual learners, including IELTS candidates, with the same emphasis on practiced, real communication rather than memorized rules.</p>
-        <div class="ga-comm-links">
-          <a href="professional/" class="ga-link">Organizational &amp; Professional Communication →</a>
-          <a href="ielts-coach/" class="ga-link">Individual English &amp; IELTS →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 9. CLOSING CTA -->
-  <section class="ga-closing" id="contact">
-    <div class="ga-closing-inner">
-      <img src="images/guild-rings-mark.png" alt="" class="ga-mark" aria-hidden="true">
-      <h2>Start with a conversation</h2>
-      <p>Most engagements start the same way — with a conversation about what's actually happening in your organization, not a proposal for a standard program. If something in your organization isn't working the way it should — between offices, between teams, between a brand promise and what guests or clients actually experience — we'd like to hear about it.</p>
-      <a href="mailto:hello@guildatelier.com" class="ga-btn ga-btn--solid">Start a Conversation</a>
-    </div>
-  </section>
-
-</main>
-
-<footer class="ga-footer">
-  <img src="images/guild-rings-mark.png" alt="Guild Atelier" class="ga-mark">
-  <p class="ga-footer-tagline">Guild Atelier — Crafted Communication</p>
-  <nav class="ga-footer-nav">
-    <a href="cross-cultural-executive-consulting/">Cross-Cultural Consulting</a>
-    <a href="hospitality/">Hospitality</a>
-    <a href="#communication">Communication &amp; Education</a>
-    <a href="notes/">Insights</a>
-    <a href="#background">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <p class="ga-footer-email"><a href="mailto:hello@guildatelier.com">hello@guildatelier.com</a></p>
-</footer>
-
-<script src="js/lang-toggle.js"></script>
-<script>
-// Homepage-only mobile nav toggle. Scoped here rather than in a shared
-// file since it controls markup that exists only on this page.
-(function () {
-  var toggle = document.getElementById('ga-menu-toggle');
-  var panel = document.getElementById('ga-mobile-nav');
-  if (!toggle || !panel) return;
-
-  function closeMenu() {
-    panel.hidden = true;
-    toggle.setAttribute('aria-expanded', 'false');
-  }
-  function openMenu() {
-    panel.hidden = false;
-    toggle.setAttribute('aria-expanded', 'true');
-  }
-
-  toggle.addEventListener('click', function () {
-    var isOpen = toggle.getAttribute('aria-expanded') === 'true';
-    if (isOpen) { closeMenu(); } else { openMenu(); }
-  });
-
-  panel.addEventListener('click', function (e) {
-    if (e.target.tagName === 'A') closeMenu();
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeMenu();
-  });
-})();
-</script>
-</body>
-</html>
+        <a href="notes/" class="ga-link">Visit
