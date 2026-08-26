@@ -3,6 +3,7 @@ date: 2026-06-21
 tag: IELTS
 excerpt: A student gets two hours of class a week and 166 hours without it. The real bottleneck is feedback, not motivation.
 slug: what-happens-when-the-teacher-isnt-in-the-room
+delisted: true
 ---
 One of the biggest challenges IELTS students face isn't grammar, vocabulary, or pronunciation. It's practice.
 
