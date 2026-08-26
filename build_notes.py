@@ -130,7 +130,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
         <a href="../../hospitality/">Hospitality</a>
         <a href="../../communication-education/">Communication &amp; Education</a>
         <a href="../" class="ga-nav-current" aria-current="page">Insights</a>
-        <a href="../../#background">About</a>
+        <a href="../../about/">About</a>
       </div>
       <a href="../../#contact" class="ga-nav-cta">Start a Conversation</a>
       <button id="lang-toggle" class="ga-lang-toggle" aria-label="Switch language">
@@ -148,7 +148,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
     <a href="../../hospitality/">Hospitality</a>
     <a href="../../communication-education/">Communication &amp; Education</a>
     <a href="../" class="ga-nav-current" aria-current="page">Insights</a>
-    <a href="../../#background">About</a>
+    <a href="../../about/">About</a>
     <a href="../../#contact" class="ga-btn">Start a Conversation</a>
   </div>
 </header>
@@ -179,7 +179,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
     <a href="../../hospitality/">Hospitality</a>
     <a href="../../communication-education/">Communication &amp; Education</a>
     <a href="../">Insights</a>
-    <a href="../../#background">About</a>
+    <a href="../../about/">About</a>
     <a href="../../#contact">Contact</a>
   </nav>
   <p class="ga-footer-email"><a href="mailto:{contact_email}">{contact_email}</a></p>
@@ -261,7 +261,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
         <a href="../hospitality/">Hospitality</a>
         <a href="../communication-education/">Communication &amp; Education</a>
         <a href="./" class="ga-nav-current" aria-current="page">Insights</a>
-        <a href="../#background">About</a>
+        <a href="../about/">About</a>
       </div>
       <a href="../#contact" class="ga-nav-cta">Start a Conversation</a>
       <button id="lang-toggle" class="ga-lang-toggle" aria-label="Switch language">
@@ -279,7 +279,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
     <a href="../hospitality/">Hospitality</a>
     <a href="../communication-education/">Communication &amp; Education</a>
     <a href="./" class="ga-nav-current" aria-current="page">Insights</a>
-    <a href="../#background">About</a>
+    <a href="../about/">About</a>
     <a href="../#contact" class="ga-btn">Start a Conversation</a>
   </div>
 </header>
@@ -341,7 +341,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
     <a href="../hospitality/">Hospitality</a>
     <a href="../communication-education/">Communication &amp; Education</a>
     <a href="./">Insights</a>
-    <a href="../#background">About</a>
+    <a href="../about/">About</a>
     <a href="#contact">Contact</a>
   </nav>
   <p class="ga-footer-email"><a href="mailto:{contact_email}">{contact_email}</a></p>
