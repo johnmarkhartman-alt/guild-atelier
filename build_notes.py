@@ -1,24 +1,32 @@
 #!/usr/bin/env python3
 """
-Guild Atelier — Notes from the Bench: static blog generator.
+Guild Atelier — Insights: static Notes generator.
 
 Reads simple front-matter + markdown-ish text files from _notes_source/
 and generates:
-  - /notes/index.html        (auto-updating list of all posts)
-  - /notes/<slug>/index.html (one page per post)
-  - /notes/feed.xml           (basic RSS feed)
+  - /notes/index.html        (the Insights landing page: Hero, From the
+                               Workbench, Deeper Work, Closing CTA)
+  - /notes/<slug>/index.html (one page per Note, Refined Atelier template)
+  - /notes/feed.xml           (RSS feed of active/listed Notes)
 
 Post source format (_notes_source/*.txt):
 
     title: Students Don't Practice Enough at Home
     date: 2026-06-20
     tag: Practice
-    excerpt: A short one-line summary shown on the index card.
+    excerpt: A short one-line summary shown on the index row.
     slug: students-dont-practice-enough-at-home
+    delisted: true          (optional, defaults to false)
     ---
     Body text goes here. Blank lines become paragraph breaks.
 
     Supports **bold**, _italic_, and [link text](https://example.com).
+    Lines starting with "•" become a bulleted list.
+
+A delisted post still gets its own page and keeps its URL working, but
+is left out of the Insights index and the RSS feed. Use this instead of
+deleting a post's source file when a Note no longer belongs in the
+active public library.
 
 No Ruby/Jekyll dependency — pure Python, runs anywhere.
 """
@@ -31,7 +39,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 SOURCE_DIR = ROOT / "_notes_source"
 OUTPUT_DIR = ROOT / "notes"
-REPLY_EMAIL = "guild-atelier@gmail.com"
+CONTACT_EMAIL = "hello@guildatelier.com"
 SITE_URL = "https://guild-atelier.com"
 
 # ---------- Minimal markdown-ish inline formatting ----------
@@ -78,128 +86,297 @@ def parse_post(path):
     missing = [k for k in required if k not in meta]
     if missing:
         raise ValueError(f"{path.name}: missing fields {missing}")
+    meta["delisted"] = meta.get("delisted", "false").strip().lower() == "true"
     meta["body_html"] = body_to_html(body)
     meta["date_obj"] = datetime.datetime.strptime(meta["date"], "%Y-%m-%d")
     meta["date_display"] = meta["date_obj"].strftime("%B %-d, %Y")
     return meta
 
-# ---------- Templates ----------
+# ---------- Templates (Refined Atelier) ----------
+
+# Individual Note article — lives at /notes/<slug>/index.html, so shared
+# assets are two levels up. Self-contained per the same pattern used by
+# cross-cultural.css / hospitality.css / communication-education.css:
+# it loads ../../css/homepage.css for tokens/reset/header/footer/closing,
+# and ../notes.css for Insights-specific pieces (page hero, workbench,
+# and this article template).
 POST_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title} — Notes from the Bench — Guild Atelier</title>
+<title>{title} | Guild Atelier</title>
 <meta name="description" content="{excerpt}">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../css/styles.css">
-<link rel="stylesheet" href="../notes.css">
-<link rel="alternate" type="application/rss+xml" title="Notes from the Bench" href="../feed.xml">
-</head>
-<body>
-<div class="grain"></div>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-<header class="site-header">
-  <div class="header-inner">
-    <a href="../../" class="brand-mark">
-      <img src="../../images/guild-mark.jpeg" alt="Guild Atelier" class="mark-img">
-      <span class="brand-name">Guild Atelier</span>
+<link rel="stylesheet" href="../../css/homepage.css">
+<link rel="stylesheet" href="../notes.css">
+<link rel="alternate" type="application/rss+xml" title="Insights | Guild Atelier" href="../feed.xml">
+</head>
+<body class="ga-page">
+
+<header class="ga-header">
+  <div class="ga-header-inner">
+    <a href="../../" class="ga-brand">
+      <img src="../../images/guild-rings-mark.png" alt="Guild Atelier" class="ga-mark">
+      <span class="ga-brand-name">Guild Atelier</span>
     </a>
-    <nav class="site-nav">
-      <a href="../../#crafts">The Crafts</a>
-      <a href="../../#workshop">In the Workshop</a>
-      <a href="../">Notes</a>
-      <a href="../../#contact" class="nav-cta">Begin an Inquiry</a>
+    <nav class="ga-nav">
+      <div class="ga-nav-links">
+        <a href="../../cross-cultural-executive-consulting/">Cross-Cultural Consulting</a>
+        <a href="../../hospitality/">Hospitality</a>
+        <a href="../../communication-education/">Communication &amp; Education</a>
+        <a href="../" class="ga-nav-current" aria-current="page">Insights</a>
+        <a href="../../#background">About</a>
+      </div>
+      <a href="../../#contact" class="ga-nav-cta">Start a Conversation</a>
+      <button id="lang-toggle" class="ga-lang-toggle" aria-label="Switch language">
+        <span class="ga-lang-option ga-lang-en">EN</span>
+        <span class="ga-lang-divider">/</span>
+        <span class="ga-lang-option ga-lang-vi">VI</span>
+      </button>
+      <button type="button" class="ga-menu-toggle" id="ga-menu-toggle" aria-expanded="false" aria-controls="ga-mobile-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
+  </div>
+  <div id="ga-mobile-nav" class="ga-mobile-nav" hidden>
+    <a href="../../cross-cultural-executive-consulting/">Cross-Cultural Consulting</a>
+    <a href="../../hospitality/">Hospitality</a>
+    <a href="../../communication-education/">Communication &amp; Education</a>
+    <a href="../" class="ga-nav-current" aria-current="page">Insights</a>
+    <a href="../../#background">About</a>
+    <a href="../../#contact" class="ga-btn">Start a Conversation</a>
   </div>
 </header>
 
 <main>
-  <article class="note-post">
-    <div class="note-post-head">
-      <span class="note-tag">{tag}</span>
-      <h1>{title}</h1>
-      <p class="note-meta">{date_display}</p>
-    </div>
-    <div class="note-post-body">
+  <article class="ga-note-post">
+    <div class="ga-container--essay">
+      <div class="ga-note-head">
+        <p class="ga-eyebrow">{tag}</p>
+        <h1>{title}</h1>
+        <p class="ga-note-meta">{date_display}</p>
+      </div>
+      <div class="ga-note-body">
 {body_html}
-    </div>
-    <div class="note-post-footer">
-      <a href="mailto:{reply_email}?subject=Re: {title}" class="btn-primary">Reply by Email</a>
-      <a href="../" class="back-link">← Back to Notes</a>
+      </div>
+      <div class="ga-note-footer">
+        <a href="../" class="ga-link">&larr; Back to Insights</a>
+      </div>
     </div>
   </article>
 </main>
 
-<footer class="site-footer">
-  <img src="../../images/guild-mark.jpeg" alt="Guild Atelier" class="footer-mark">
-  <p>&copy; 2026 Guild Atelier. Crafted Communication.</p>
+<footer class="ga-footer">
+  <img src="../../images/guild-rings-mark.png" alt="Guild Atelier" class="ga-mark">
+  <p class="ga-footer-tagline">Guild Atelier: Crafted Communication</p>
+  <nav class="ga-footer-nav">
+    <a href="../../cross-cultural-executive-consulting/">Cross-Cultural Consulting</a>
+    <a href="../../hospitality/">Hospitality</a>
+    <a href="../../communication-education/">Communication &amp; Education</a>
+    <a href="../">Insights</a>
+    <a href="../../#background">About</a>
+    <a href="../../#contact">Contact</a>
+  </nav>
+  <p class="ga-footer-email"><a href="mailto:{contact_email}">{contact_email}</a></p>
 </footer>
+
+<script src="../../js/lang-toggle.js"></script>
+<script>
+(function () {{
+  var toggle = document.getElementById('ga-menu-toggle');
+  var panel = document.getElementById('ga-mobile-nav');
+  if (!toggle || !panel) return;
+
+  function closeMenu() {{
+    panel.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+  }}
+  function openMenu() {{
+    panel.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+  }}
+
+  toggle.addEventListener('click', function () {{
+    var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {{ closeMenu(); }} else {{ openMenu(); }}
+  }});
+
+  panel.addEventListener('click', function (e) {{
+    if (e.target.tagName === 'A') closeMenu();
+  }});
+
+  document.addEventListener('keydown', function (e) {{
+    if (e.key === 'Escape') closeMenu();
+  }});
+}})();
+</script>
 </body>
 </html>
 """
 
-INDEX_CARD_TEMPLATE = """      <a href="{slug}/" class="note-card">
-        <span class="note-tag">{tag}</span>
+INDEX_ROW_TEMPLATE = """      <a href="{slug}/" class="ga-insight-row">
+        <span class="ga-insight-tag">{tag}</span>
         <h4>{title}</h4>
-        <span class="note-date">{date_display}</span>
-        <span class="note-read-more">Read note →</span>
+        <span class="ga-insight-desc">{excerpt}</span>
+        <span class="ga-insight-more">Read the note &rarr;</span>
       </a>"""
 
+# The Insights landing page — lives at /notes/index.html. Hero, Deeper
+# Work, and Closing CTA are fixed editorial copy; only the "From the
+# Workbench" rows are generated from source files. Architecture is
+# intentionally locked to these four sections — see Insights revision
+# notes before adding to it.
 INDEX_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notes from the Bench — Guild Atelier</title>
-<meta name="description" content="Recent observations from teaching, coaching, and product development.">
+<title>Insights | Guild Atelier</title>
+<meta name="description" content="Working ideas from Guild Atelier on culture, communication, organizations, service, and the systems behind them.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/styles.css">
-<link rel="stylesheet" href="notes.css">
-<link rel="alternate" type="application/rss+xml" title="Notes from the Bench" href="feed.xml">
-</head>
-<body>
-<div class="grain"></div>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-<header class="site-header">
-  <div class="header-inner">
-    <a href="../" class="brand-mark">
-      <img src="../images/guild-mark.jpeg" alt="Guild Atelier" class="mark-img">
-      <span class="brand-name">Guild Atelier</span>
+<link rel="stylesheet" href="../css/homepage.css">
+<link rel="stylesheet" href="notes.css">
+<link rel="alternate" type="application/rss+xml" title="Insights | Guild Atelier" href="feed.xml">
+</head>
+<body class="ga-page">
+
+<header class="ga-header">
+  <div class="ga-header-inner">
+    <a href="../" class="ga-brand">
+      <img src="../images/guild-rings-mark.png" alt="Guild Atelier" class="ga-mark">
+      <span class="ga-brand-name">Guild Atelier</span>
     </a>
-    <nav class="site-nav">
-      <a href="../#crafts">The Crafts</a>
-      <a href="../#workshop">In the Workshop</a>
-      <a href="./">Notes</a>
-      <a href="../#contact" class="nav-cta">Begin an Inquiry</a>
+    <nav class="ga-nav">
+      <div class="ga-nav-links">
+        <a href="../cross-cultural-executive-consulting/">Cross-Cultural Consulting</a>
+        <a href="../hospitality/">Hospitality</a>
+        <a href="../communication-education/">Communication &amp; Education</a>
+        <a href="./" class="ga-nav-current" aria-current="page">Insights</a>
+        <a href="../#background">About</a>
+      </div>
+      <a href="../#contact" class="ga-nav-cta">Start a Conversation</a>
+      <button id="lang-toggle" class="ga-lang-toggle" aria-label="Switch language">
+        <span class="ga-lang-option ga-lang-en">EN</span>
+        <span class="ga-lang-divider">/</span>
+        <span class="ga-lang-option ga-lang-vi">VI</span>
+      </button>
+      <button type="button" class="ga-menu-toggle" id="ga-menu-toggle" aria-expanded="false" aria-controls="ga-mobile-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
+  </div>
+  <div id="ga-mobile-nav" class="ga-mobile-nav" hidden>
+    <a href="../cross-cultural-executive-consulting/">Cross-Cultural Consulting</a>
+    <a href="../hospitality/">Hospitality</a>
+    <a href="../communication-education/">Communication &amp; Education</a>
+    <a href="./" class="ga-nav-current" aria-current="page">Insights</a>
+    <a href="../#background">About</a>
+    <a href="../#contact" class="ga-btn">Start a Conversation</a>
   </div>
 </header>
 
 <main>
-  <section class="notes-index">
-    <div class="section-head">
-      <p class="eyebrow">Notes from the Bench</p>
-      <h1>Recent Observations</h1>
-      <p class="section-lede">Recent observations from teaching, coaching, and product development.</p>
-    </div>
 
-    <div class="notes-grid">
-{cards}
+  <!-- 1. HERO -->
+  <section class="ga-hero ga-page-hero" id="top">
+    <div class="ga-hero-inner ga-page-hero-inner">
+      <p class="ga-eyebrow">Insights</p>
+      <h1 class="ga-hero-title ga-page-hero-title">Notes from the workbench.</h1>
+      <div class="ga-hero-body ga-page-hero-body">
+        <p>Working ideas about culture, communication, organizations, service, and the systems behind them.</p>
+      </div>
     </div>
   </section>
+
+  <!-- 2. FROM THE WORKBENCH -->
+  <section class="ga-insights ga-workbench" id="workbench">
+    <div class="ga-container">
+      <div class="ga-insights-inner ga-workbench-inner">
+        <h2>From the Workbench</h2>
+        <div class="ga-insights-list">
+{rows}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DEEPER WORK -->
+  <section class="ga-trap" id="deeper-work">
+    <div class="ga-trap-inner">
+      <p class="ga-trap-quote">Some problems need a longer look.</p>
+      <div class="ga-trap-body">
+        <p>Guild Atelier is developing a deeper body of work around a recurring question: why do organizations keep producing outcomes that nobody inside them actually intended?</p>
+        <p>That work looks beyond individual mistakes to the relationships between people, processes, information, authority, feedback, and the conditions under which the work actually happens.</p>
+        <p>Longer Notes, Executive Briefs, and White Papers will appear here as that thinking develops.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CLOSING CTA -->
+  <section class="ga-closing" id="contact">
+    <div class="ga-closing-inner">
+      <img src="../images/guild-rings-mark.png" alt="" class="ga-mark" aria-hidden="true">
+      <h2>Start with a conversation</h2>
+      <p>If something here describes a problem you're seeing in your own organization, tell us about it.</p>
+      <a href="mailto:{contact_email}" class="ga-btn ga-btn--solid">Start a Conversation</a>
+    </div>
+  </section>
+
 </main>
 
-<footer class="site-footer">
-  <img src="../images/guild-mark.jpeg" alt="Guild Atelier" class="footer-mark">
-  <p>&copy; 2026 Guild Atelier. Crafted Communication.</p>
+<footer class="ga-footer">
+  <img src="../images/guild-rings-mark.png" alt="Guild Atelier" class="ga-mark">
+  <p class="ga-footer-tagline">Guild Atelier: Crafted Communication</p>
+  <nav class="ga-footer-nav">
+    <a href="../cross-cultural-executive-consulting/">Cross-Cultural Consulting</a>
+    <a href="../hospitality/">Hospitality</a>
+    <a href="../communication-education/">Communication &amp; Education</a>
+    <a href="./">Insights</a>
+    <a href="../#background">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <p class="ga-footer-email"><a href="mailto:{contact_email}">{contact_email}</a></p>
 </footer>
+
+<script src="../js/lang-toggle.js"></script>
+<script>
+(function () {{
+  var toggle = document.getElementById('ga-menu-toggle');
+  var panel = document.getElementById('ga-mobile-nav');
+  if (!toggle || !panel) return;
+
+  function closeMenu() {{
+    panel.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+  }}
+  function openMenu() {{
+    panel.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+  }}
+
+  toggle.addEventListener('click', function () {{
+    var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {{ closeMenu(); }} else {{ openMenu(); }}
+  }});
+
+  panel.addEventListener('click', function (e) {{
+    if (e.target.tagName === 'A') closeMenu();
+  }});
+
+  document.addEventListener('keydown', function (e) {{
+    if (e.key === 'Escape') closeMenu();
+  }});
+}})();
+</script>
 </body>
 </html>
 """
@@ -215,9 +392,9 @@ RSS_ITEM_TEMPLATE = """  <item>
 RSS_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-  <title>Notes from the Bench — Guild Atelier</title>
+  <title>Insights | Guild Atelier</title>
   <link>{site_url}/notes/</link>
-  <description>Recent observations from teaching, coaching, and product development.</description>
+  <description>Working ideas from Guild Atelier on culture, communication, organizations, service, and the systems behind them.</description>
 {items}
 </channel>
 </rss>
@@ -240,10 +417,12 @@ def main():
         return
 
     posts.sort(key=lambda p: p["date_obj"], reverse=True)
+    listed_posts = [p for p in posts if not p["delisted"]]
 
     OUTPUT_DIR.mkdir(exist_ok=True)
 
-    # Build each post page
+    # Build every post's page, listed or not — delisting only affects
+    # the index and feed, never the page itself or its URL.
     for post in posts:
         post_dir = OUTPUT_DIR / post["slug"]
         post_dir.mkdir(exist_ok=True)
@@ -253,33 +432,38 @@ def main():
             tag=html.escape(post["tag"]),
             date_display=post["date_display"],
             body_html=post["body_html"],
-            reply_email=REPLY_EMAIL,
+            contact_email=CONTACT_EMAIL,
         )
         (post_dir / "index.html").write_text(html_out, encoding="utf-8")
-        print(f"Built: notes/{post['slug']}/index.html")
+        status = "delisted" if post["delisted"] else "listed"
+        print(f"Built: notes/{post['slug']}/index.html ({status})")
 
-    # Build index page
-    cards = "\n".join(
-        INDEX_CARD_TEMPLATE.format(
+    # Build the Insights landing page — only listed posts appear.
+    rows = "\n".join(
+        INDEX_ROW_TEMPLATE.format(
             slug=p["slug"], tag=html.escape(p["tag"]),
-            title=html.escape(p["title"]), date_display=p["date_display"],
-        ) for p in posts
+            title=html.escape(p["title"]), excerpt=html.escape(p["excerpt"]),
+        ) for p in listed_posts
     )
-    (OUTPUT_DIR / "index.html").write_text(INDEX_TEMPLATE.format(cards=cards), encoding="utf-8")
+    (OUTPUT_DIR / "index.html").write_text(
+        INDEX_TEMPLATE.format(rows=rows, contact_email=CONTACT_EMAIL), encoding="utf-8"
+    )
     print("Built: notes/index.html")
 
-    # Build RSS feed
+    # Build RSS feed — only listed posts appear.
     items = "\n".join(
         RSS_ITEM_TEMPLATE.format(
             title=html.escape(p["title"]), slug=p["slug"],
             site_url=SITE_URL, excerpt=html.escape(p["excerpt"]),
             rss_date=p["date_obj"].strftime("%a, %d %b %Y 00:00:00 +0000"),
-        ) for p in posts
+        ) for p in listed_posts
     )
-    (OUTPUT_DIR / "feed.xml").write_text(RSS_TEMPLATE.format(site_url=SITE_URL, items=items), encoding="utf-8")
+    (OUTPUT_DIR / "feed.xml").write_text(
+        RSS_TEMPLATE.format(site_url=SITE_URL, items=items), encoding="utf-8"
+    )
     print("Built: notes/feed.xml")
 
-    print(f"\nDone — {len(posts)} post(s) built.")
+    print(f"\nDone — {len(posts)} post(s) built, {len(listed_posts)} listed, {len(posts) - len(listed_posts)} delisted.")
 
 if __name__ == "__main__":
     main()
