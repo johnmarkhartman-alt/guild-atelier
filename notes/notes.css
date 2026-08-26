@@ -1,103 +1,151 @@
-/* ============================================
-   Notes from the Bench — post + index styling
-   Extends the main Guild Atelier design tokens
-   ============================================ */
+/* ============================================================
+   GUILD ATELIER — INSIGHTS / NOTES
+   Page-specific stylesheet. Loaded alongside /css/homepage.css,
+   which supplies the Refined Atelier tokens (:root), reset, and
+   shared components (.ga-container, .ga-eyebrow, .ga-link, .ga-btn,
+   .ga-hairline, header, .ga-trap, .ga-insights, .ga-closing,
+   .ga-footer, mobile nav).
+   This file is self-contained, following the same pattern as
+   cross-cultural.css / hospitality.css / communication-education.css:
+   it defines its own section/article classes so this page never
+   depends on any of those files loading, and it never redeclares
+   homepage selectors, so /index.html and its CSS remain untouched.
 
-.notes-index {
-  max-width: 1100px;
+   Used by both the Insights landing page (/notes/index.html) and
+   every individual Note article (/notes/<slug>/index.html).
+   ============================================================ */
+
+/* ---- Active nav state (Insights + every Note article) ---- */
+.ga-nav a.ga-nav-current:not(.ga-nav-cta) {
+  color: var(--umber);
+  border-bottom: 1px solid var(--umber-line-strong);
+  padding-bottom: 0.15em;
+}
+.ga-mobile-nav a.ga-nav-current {
+  color: var(--umber);
+}
+
+/* ============================================================
+   Page Hero — same quiet treatment used on the other practice
+   pages, so Insights reads as a sibling rather than a different
+   kind of page.
+   ============================================================ */
+.ga-page-hero {
+  padding: var(--sp-6) var(--sp-4) var(--sp-5);
+}
+.ga-page-hero-inner {
+  max-width: 820px;
   margin: 0 auto;
-  padding: var(--space-6) var(--space-3);
+}
+.ga-page-hero-title {
+  font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+  line-height: 1.22;
+  max-width: 18ch;
+}
+.ga-page-hero-body {
+  margin-top: var(--sp-4);
+  max-width: 620px;
+}
+.ga-page-hero-body p {
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
 }
 
-.notes-index .section-head h1 {
-  font-size: clamp(1.9rem, 3vw, 2.6rem);
-  margin: var(--space-1) 0;
+/* ============================================================
+   From the Workbench — reuses homepage's .ga-insights /
+   .ga-insight-row editorial-index pattern directly; this block
+   only adds the section heading and the per-row "Read the note"
+   affordance, neither of which the homepage version needed.
+   ============================================================ */
+.ga-workbench-inner h2 {
+  font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+  margin-bottom: var(--sp-4);
+  max-width: 22ch;
 }
 
-.note-date {
+.ga-insight-more {
   display: block;
-  font-size: 0.72rem;
-  color: var(--color-sage-dim);
-  margin-top: 0.2rem;
+  margin-top: 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--umber);
+}
+.ga-insight-row:hover .ga-insight-more { color: var(--gold); }
+
+/* Deeper Work reuses .ga-trap / .ga-trap-inner / .ga-trap-quote /
+   .ga-trap-body directly from homepage.css — no overrides needed.
+   Closing CTA reuses .ga-closing directly — no overrides needed. */
+
+/* ============================================================
+   Individual Note article
+   ============================================================ */
+.ga-note-post {
+  padding: var(--sp-6) var(--sp-4) var(--sp-7);
 }
 
-/* ============================================
-   Single post page
-   ============================================ */
-.note-post {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: var(--space-6) var(--space-3) var(--space-5);
+.ga-note-head {
+  padding-bottom: var(--sp-4);
+  margin-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--umber-line);
+}
+.ga-note-head h1 {
+  font-size: clamp(2rem, 4.4vw, 2.9rem);
+  line-height: 1.2;
+  margin-top: 0.3rem;
+}
+.ga-note-meta {
+  margin-top: var(--sp-2);
+  font-size: 0.82rem;
+  color: var(--ink-faint);
 }
 
-.note-post-head {
-  text-align: center;
-  margin-bottom: var(--space-4);
+.ga-note-body p {
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+.ga-note-body p + p {
+  margin-top: var(--sp-3);
+}
+.ga-note-body strong {
+  color: var(--ink);
+  font-weight: 600;
 }
 
-.note-post-head h1 {
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  margin: var(--space-2) 0 var(--space-1);
+.ga-note-body ul {
+  list-style: none;
+  margin: var(--sp-3) 0;
+  padding: 0;
+  border-top: 1px solid var(--umber-line);
+}
+.ga-note-body ul + p {
+  margin-top: var(--sp-3);
+}
+.ga-note-body li {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--umber-line);
 }
 
-.note-meta {
-  font-size: 0.8rem;
-  color: var(--color-sage-dim);
+.ga-note-footer {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--umber-line);
 }
 
-.note-post-body {
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: var(--color-sage);
-}
-
-.note-post-body p {
-  margin-bottom: var(--space-2);
-}
-
-.note-post-body ul {
-  margin: 0 0 var(--space-2) 1.4rem;
-}
-.note-post-body li {
-  margin-bottom: 0.5rem;
-}
-
-.note-post-body strong {
-  color: var(--color-champagne);
-}
-
-.note-post-body a {
-  color: var(--color-gold);
-  text-decoration: underline;
-  text-decoration-color: rgba(212, 175, 106, 0.4);
-}
-.note-post-body a:hover {
-  text-decoration-color: var(--color-gold);
-}
-
-.note-post-footer {
-  margin-top: var(--space-5);
-  padding-top: var(--space-3);
-  border-top: 1px solid rgba(212, 175, 106, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.back-link {
-  font-size: 0.85rem;
-  color: var(--color-sage);
-  transition: color 0.25s ease;
-}
-.back-link:hover {
-  color: var(--color-gold);
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 860px) {
+  .ga-page-hero { padding: var(--sp-5) var(--sp-3) var(--sp-4); }
+  .ga-workbench { padding: 0 var(--sp-3) var(--sp-5); }
+  .ga-note-post { padding: var(--sp-5) var(--sp-3) var(--sp-6); }
 }
 
 @media (max-width: 480px) {
-  .note-post-footer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  .ga-note-body li { font-size: 1.02rem; }
 }
