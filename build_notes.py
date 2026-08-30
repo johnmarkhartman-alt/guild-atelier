@@ -47,13 +47,26 @@ def inline_format(text):
     text = html.escape(text)
     text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
     text = re.sub(r"_(.+?)_", r"<em>\1</em>", text)
-    text = re.sub(r"\[(.+?)\]\((https?://[^\)]+)\)", r'<a href="\2">\1</a>', text)
+    text = re.sub(r"\[(.+?)\]\(([^\s\)]+)\)", r'<a href="\2">\1</a>', text)
     return text
+
+# A block consisting of nothing but a single [label](url) link is
+# rendered as a CTA button using the site's existing .ga-btn component,
+# instead of a plain in-paragraph link. Reuses the same component as
+# "Start a Conversation" elsewhere on the site — no new visual element.
+STANDALONE_LINK_RE = re.compile(r"^\[(.+?)\]\(([^\s\)]+)\)$")
 
 def body_to_html(body):
     blocks = [b.strip() for b in body.strip().split("\n\n") if b.strip()]
     html_parts = []
     for block in blocks:
+        standalone_link = STANDALONE_LINK_RE.match(block)
+        if standalone_link:
+            label, url = standalone_link.group(1), standalone_link.group(2)
+            html_parts.append(
+                f'  <p class="ga-note-cta"><a href="{html.escape(url)}" class="ga-btn ga-btn--solid" target="_blank" rel="noopener">{html.escape(label)}</a></p>'
+            )
+            continue
         lines = block.split("\n")
         bullet_lines = [l for l in lines if l.strip().startswith("•")]
         lead_lines = [l for l in lines if not l.strip().startswith("•")]
@@ -87,6 +100,12 @@ def parse_post(path):
     if missing:
         raise ValueError(f"{path.name}: missing fields {missing}")
     meta["delisted"] = meta.get("delisted", "false").strip().lower() == "true"
+    # Optional, backward-compatible overrides. Any post that omits these
+    # behaves exactly as before: the index card and social tags fall
+    # back to the same excerpt every post already provides.
+    meta["card_desc"] = meta.get("card_desc", "").strip() or meta["excerpt"]
+    meta["og_description"] = meta.get("og_description", "").strip() or meta["excerpt"]
+    meta["image"] = meta.get("image", "").strip()
     meta["body_html"] = body_to_html(body)
     meta["date_obj"] = datetime.datetime.strptime(meta["date"], "%Y-%m-%d")
     meta["date_display"] = meta["date_obj"].strftime("%B %-d, %Y")
@@ -130,7 +149,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
         <a href="../../hospitality/">Hospitality</a>
         <a href="../../communication-education/">Communication &amp; Education</a>
         <a href="../" class="ga-nav-current" aria-current="page">Insights</a>
-        <a href="../../about/">About</a>
+        <a href="../../#background">About</a>
       </div>
       <a href="../../#contact" class="ga-nav-cta">Start a Conversation</a>
       <button id="lang-toggle" class="ga-lang-toggle" aria-label="Switch language">
@@ -148,7 +167,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
     <a href="../../hospitality/">Hospitality</a>
     <a href="../../communication-education/">Communication &amp; Education</a>
     <a href="../" class="ga-nav-current" aria-current="page">Insights</a>
-    <a href="../../about/">About</a>
+    <a href="../../#background">About</a>
     <a href="../../#contact" class="ga-btn">Start a Conversation</a>
   </div>
 </header>
@@ -179,7 +198,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
     <a href="../../hospitality/">Hospitality</a>
     <a href="../../communication-education/">Communication &amp; Education</a>
     <a href="../">Insights</a>
-    <a href="../../about/">About</a>
+    <a href="../../#background">About</a>
     <a href="../../#contact">Contact</a>
   </nav>
   <p class="ga-footer-email"><a href="mailto:{contact_email}">{contact_email}</a></p>
@@ -261,7 +280,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
         <a href="../hospitality/">Hospitality</a>
         <a href="../communication-education/">Communication &amp; Education</a>
         <a href="./" class="ga-nav-current" aria-current="page">Insights</a>
-        <a href="../about/">About</a>
+        <a href="../#background">About</a>
       </div>
       <a href="../#contact" class="ga-nav-cta">Start a Conversation</a>
       <button id="lang-toggle" class="ga-lang-toggle" aria-label="Switch language">
@@ -279,7 +298,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
     <a href="../hospitality/">Hospitality</a>
     <a href="../communication-education/">Communication &amp; Education</a>
     <a href="./" class="ga-nav-current" aria-current="page">Insights</a>
-    <a href="../about/">About</a>
+    <a href="../#background">About</a>
     <a href="../#contact" class="ga-btn">Start a Conversation</a>
   </div>
 </header>
@@ -341,7 +360,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
     <a href="../hospitality/">Hospitality</a>
     <a href="../communication-education/">Communication &amp; Education</a>
     <a href="./">Insights</a>
-    <a href="../about/">About</a>
+    <a href="../#background">About</a>
     <a href="#contact">Contact</a>
   </nav>
   <p class="ga-footer-email"><a href="mailto:{contact_email}">{contact_email}</a></p>
@@ -426,6 +445,7 @@ def main():
     for post in posts:
         post_dir = OUTPUT_DIR / post["slug"]
         post_dir.mkdir(exist_ok=True)
+        desc_meta = f'<meta name="description" content="{html.escape(post["excerpt"])}">'
         html_out = POST_TEMPLATE.format(
             title=html.escape(post["title"]),
             excerpt=html.escape(post["excerpt"]),
@@ -434,6 +454,25 @@ def main():
             body_html=post["body_html"],
             contact_email=CONTACT_EMAIL,
         )
+        # Social-sharing meta is only spliced in for posts that supply an
+        # `image`. This keeps every other post's generated HTML byte-for-
+        # byte identical to before — nothing here touches the shared
+        # template or its default output.
+        if post["image"]:
+            page_url = f"{SITE_URL}/notes/{post['slug']}/"
+            image_url = f"{SITE_URL}/notes/{post['slug']}/{post['image']}"
+            social_meta = "\n".join([
+                '<meta property="og:type" content="article">',
+                f'<meta property="og:title" content="{html.escape(post["title"])}">',
+                f'<meta property="og:description" content="{html.escape(post["og_description"])}">',
+                f'<meta property="og:url" content="{page_url}">',
+                f'<meta property="og:image" content="{image_url}">',
+                '<meta name="twitter:card" content="summary_large_image">',
+                f'<meta name="twitter:title" content="{html.escape(post["title"])}">',
+                f'<meta name="twitter:description" content="{html.escape(post["og_description"])}">',
+                f'<meta name="twitter:image" content="{image_url}">',
+            ])
+            html_out = html_out.replace(desc_meta, f"{desc_meta}\n{social_meta}", 1)
         (post_dir / "index.html").write_text(html_out, encoding="utf-8")
         status = "delisted" if post["delisted"] else "listed"
         print(f"Built: notes/{post['slug']}/index.html ({status})")
@@ -442,7 +481,7 @@ def main():
     rows = "\n".join(
         INDEX_ROW_TEMPLATE.format(
             slug=p["slug"], tag=html.escape(p["tag"]),
-            title=html.escape(p["title"]), excerpt=html.escape(p["excerpt"]),
+            title=html.escape(p["title"]), excerpt=html.escape(p["card_desc"]),
         ) for p in listed_posts
     )
     (OUTPUT_DIR / "index.html").write_text(
