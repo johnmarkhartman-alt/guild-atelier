@@ -1,0 +1,33 @@
+title: Why Does Doing It the Wrong Way Make Sense?
+date: 2026-08-30
+tag: Executive Brief No. 1
+excerpt: An Executive Brief from Guild Atelier on recurring workarounds, disproportionate controls, and what they reveal about the systems that produce them.
+og_description: Guild Atelier Executive Brief No. 1: what recurring workarounds actually tell you about the system, not the employee.
+card_desc: Guild Atelier
+image: cover.jpg
+slug: why-does-doing-it-the-wrong-way-make-sense
+---
+Organizations often respond to recurring problems by correcting the people closest to them: retraining employees, revising procedures, sending reminders, or increasing supervision.
+
+But when the same behavior keeps returning, another question becomes useful:
+
+**What if doing it the wrong way makes sense?**
+
+This Executive Brief examines recurring workarounds, disproportionate controls, communication failures, and other situations where apparently incorrect behavior may actually be a rational response to the system in which the work occurs.
+
+The central managerial question becomes:
+
+**"What do they know about this system that we don't?"**
+
+[Read / Download the Executive Brief](Guild-Atelier-Executive-Brief-01.pdf)
+
+**In This Brief**
+• Why recurring workarounds should be treated as information
+• Why controls should be proportional to the risks they manage
+• Why information transmitted is not necessarily operational knowledge
+• Why retraining often fails to solve recurring operational problems
+• How managers can investigate the system behind visible behavior
+
+Guild Atelier Executive Brief No. 1
+
+Guild Atelier examines recurring operational problems through Operational Systems Analysis, looking beyond the visible failure to understand the conditions, relationships, information flows, incentives, constraints, and adaptations that keep producing it.
