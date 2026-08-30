@@ -113,6 +113,13 @@
   font-weight: 600;
 }
 
+/* CTA button within a Note body (e.g. a "read the full brief" link).
+   Reuses .ga-btn / .ga-btn--solid as defined in homepage.css — this
+   only adds the spacing needed to set it off from surrounding text. */
+.ga-note-cta {
+  margin: var(--sp-4) 0;
+}
+
 .ga-note-body ul {
   list-style: none;
   margin: var(--sp-3) 0;
