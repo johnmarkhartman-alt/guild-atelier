@@ -1,0 +1,27 @@
+/* Operating Friction Review: extends the existing atelier design. */
+.ofr-wrap { max-width: 760px; margin: 0 auto; }
+.ofr-hero, .ofr-section { padding: clamp(3rem, 7vw, 6rem) max(1.25rem, calc((100vw - 1180px) / 2)); }
+.ofr-hero { border-bottom: 1px solid var(--umber-line); }
+.ofr-hero h1 { font-family: var(--font-serif); font-size: clamp(2.8rem, 6vw, 4.8rem); font-weight: 500; line-height: 1.08; margin: 1rem 0 1.75rem; }
+.ofr-hero p, .ofr-section p { margin-bottom: 1.2rem; }
+.ofr-lede { font-size: 1.2rem; }
+.ofr-price { font-size: 1.15rem; margin-top: 1.75rem; }
+.ofr-tint { background: var(--ivory-deep); }
+.ofr-section h2 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 500; line-height: 1.15; margin-bottom: 1.5rem; }
+.ofr-section h3 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500; margin-bottom: .6rem; }
+.ofr-list { padding-left: 1.3rem; margin-bottom: 1.5rem; }
+.ofr-list li { margin-bottom: .7rem; }
+.ofr-steps { padding-left: 1.5rem; }
+.ofr-steps li { padding-left: .6rem; margin-bottom: 2rem; }
+.ofr-contact { border-top: 1px solid var(--umber-line); scroll-margin-top: 6rem; }
+.ofr-contact label { display: block; font-size: 1rem; font-weight: 500; margin: 1rem 0 .5rem; }
+.ofr-contact input, .ofr-contact textarea { box-sizing: border-box; width: 100%; background: #fffaf2; border: 1px solid var(--umber-line-strong); border-radius: 1px; padding: .8rem; color: var(--ink); font: inherit; }
+.ofr-contact textarea { resize: vertical; }
+.ofr-contact input:focus-visible, .ofr-contact textarea:focus-visible { outline: 2px solid var(--umber); outline-offset: 2px; }
+.ofr-fields { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1.25rem; }
+.ofr-contact button { font: inherit; cursor: pointer; margin: 1.5rem 0 1rem; background: transparent; }
+.ofr-direct a { text-decoration: underline; text-underline-offset: .2em; }
+.ofr-skip { position: absolute; left: 1rem; top: -100px; padding: .8rem; background: var(--ivory); z-index: 100; }
+.ofr-skip:focus { top: 1rem; }
+.ofr-section .ga-btn, .ofr-hero .ga-btn { white-space: normal; text-align: center; }
+@media (max-width: 540px) { .ofr-fields { grid-template-columns: 1fr; gap: 0; } .ofr-contact .ga-btn { width: 100%; } }
