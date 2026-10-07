@@ -39,7 +39,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 SOURCE_DIR = ROOT / "_notes_source"
 OUTPUT_DIR = ROOT / "notes"
-CONTACT_EMAIL = "hello@guildatelier.com"
+CONTACT_EMAIL = "hello@guild-atelier.com"
 SITE_URL = "https://guild-atelier.com"
 
 # ---------- Minimal markdown-ish inline formatting ----------

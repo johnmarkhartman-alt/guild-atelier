@@ -10,7 +10,7 @@
       'Organization: ' + details.get('organization'), '',
       'Workflow to review:', details.get('workflow'), '',
       'Timezone and preferred way to connect: ' + details.get('preference')].join('\r\n');
-    window.location.href = 'mailto:hello@guildatelier.com?subject=' + encodeURIComponent('Operating Friction Review — call request') + '&body=' + encodeURIComponent(body);
+    window.location.href = 'mailto:hello@guild-atelier.com?subject=' + encodeURIComponent('Operating Friction Review — call request') + '&body=' + encodeURIComponent(body);
     document.getElementById('request-status').textContent = 'Your email app has been requested. Please review and send the email to complete your request. If it does not open, use the email address below. Your details remain here until you leave or refresh this page.';
   });
 })();
